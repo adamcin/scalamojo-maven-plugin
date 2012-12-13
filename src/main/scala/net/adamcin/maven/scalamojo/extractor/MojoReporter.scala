@@ -12,8 +12,10 @@ import tools.nsc.doc.Settings
  * @version $Id: MojoReporter.java$
  * @author madamcin
  */
-class MojoReporter(val settings: Settings) extends AbstractReporter {
+class MojoReporter(val settings: Settings, val quiet: Boolean) extends AbstractReporter {
   val log = LoggerFactory.getLogger(getClass)
+
+  override def hasErrors = false
 
   def display(pos: Position, msg: String, severity: Severity) {
     val posIn =
@@ -25,10 +27,12 @@ class MojoReporter(val settings: Settings) extends AbstractReporter {
         pos
       }
 
-    severity match {
-      case INFO => log.info(msg)
-      case WARNING => log.warn(msg)
-      case ERROR => log.error(msg)
+    if (!quiet) {
+      severity match {
+        case INFO => log.info(msg)
+        case WARNING => log.warn(msg)
+        case ERROR => log.error(msg)
+      }
     }
   }
 

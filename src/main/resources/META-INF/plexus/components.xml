@@ -20,11 +20,16 @@
             <role>org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor</role>
             <role-hint>java-annotations-for-scala</role-hint>
             <implementation>net.adamcin.maven.scalamojo.extractor.ScalaMojoDescriptorExtractor</implementation>
+            <isolated-realm>false</isolated-realm>
             <requirements>
                 <requirement>
                     <role>org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor</role>
                     <role-hint>java-annotations</role-hint>
                     <field-name>javaAnnotationsExtractor</field-name>
+                </requirement>
+                <requirement>
+                    <role>org.apache.maven.repository.RepositorySystem</role>
+                    <field-name>repositorySystem</field-name>
                 </requirement>
             </requirements>
         </component>
