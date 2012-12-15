@@ -46,6 +46,7 @@
         <scala.version>2.9.2</scala.version>
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>1.5</maven.compiler.target>
+        <self.report.version>1.0-SNAPSHOT</self.report.version>
     </properties>
 
     <prerequisites>
@@ -101,6 +102,57 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <inputEncoding>utf-8</inputEncoding>
+                    <reportPlugins>
+                        <plugin>
+                            <groupId>net.adamcin</groupId>
+                            <artifactId>scalamojo-maven-plugin</artifactId>
+                            <version>${self.report.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>2.4</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>2.7</version>
+                            <configuration>
+                                <minmemory>128m</minmemory>
+                                <maxmemory>512m</maxmemory>
+                                <useStandardDocletOptions>true</useStandardDocletOptions>
+                                <charset>${encoding}</charset>
+                                <encoding>${encoding}</encoding>
+                                <docencoding>${encoding}</docencoding>
+                                <docfilessubdirs>true</docfilessubdirs>
+                                <breakiterator>true</breakiterator>
+                                <version>true</version>
+                                <author>true</author>
+                                <keywords>true</keywords>
+                                <attach>false</attach>
+                                <!--
+                               <doctitle>${project.name} API Reference (${project.version}, r${buildNumber})</doctitle>
+                               <windowtitle>${project.name} API Reference (${project.version}, r${buildNumber})</windowtitle>
+                                -->
+                                <links>
+                                    <link>http://java.sun.com/j2se/${maven.compiler.source}/docs/api/</link>
+                                    <link>http://slf4j.org/api/</link>
+                                </links>
+                                <!-- additionalparam>-nopackagediagram</additionalparam-->
+                                <!-- additionalparam>-sourceclasspath ${project.build.outputDirectory}</additionalparam-->
+                                <!-- -sourceclasspath ${project.build.outputDirectory} -->
+                                <excludePackageNames>${project.groupId}.example*:${project.groupId}.util.internal*</excludePackageNames>
+                            </configuration>
+                        </plugin>
+                    </reportPlugins>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -128,20 +180,6 @@
             <groupId>com.github.scala-incubator.io</groupId>
             <artifactId>scala-io-file_${scala.version}</artifactId>
             <version>0.4.1-seq</version>
-        </dependency>
-
-        <!--
-        <dependency>
-            <groupId>com.github.jsuereth.scala-arm</groupId>
-            <artifactId>scala-arm_2.9.1</artifactId>
-            <version>1.1</version>
-        </dependency>
-        -->
-
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.4</version>
         </dependency>
 
         <!-- Override 3rd-party logging -->
@@ -211,6 +249,10 @@
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.maven</groupId>
+                    <artifactId>maven-project</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.maven</groupId>
                     <artifactId>maven-plugin-descriptor</artifactId>
                 </exclusion>
             </exclusions>
@@ -220,11 +262,23 @@
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-tools-annotations</artifactId>
             <version>${maven.plugin.tools.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.maven</groupId>
+                    <artifactId>maven-project</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-plugin-plugin</artifactId>
             <version>${maven.plugin.tools.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.maven</groupId>
+                    <artifactId>maven-project</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Testing Dependencies -->
