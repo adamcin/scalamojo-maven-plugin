@@ -27,23 +27,23 @@
 
 package net.adamcin.maven.scalamojo.extractor
 
-import org.scalatest.junit.JUnitRunner
-import org.junit.runner.RunWith
-import org.scalatest.FunSuite
-import org.slf4j.LoggerFactory
+import org.apache.maven.plugin.plugin.PluginReport
+import java.util.Locale
+import org.apache.maven.plugins.annotations.{ResolutionScope, LifecyclePhase, Execute, Mojo}
+
+import collection.JavaConversions._
 
 /**
  *
- * @version $Id: ScalaMojoDescriptorExtractorTest.java$
- * @author madamcin
+ * @since 1.0
+ * @author Mark Adamcin
  */
-@RunWith(classOf[JUnitRunner])
-class ScalaMojoDescriptorExtractorTest extends FunSuite {
-  val log = LoggerFactory.getLogger(getClass)
+@Mojo(name = "report", threadSafe = true, requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
+@Execute(phase = LifecyclePhase.PROCESS_CLASSES)
+class ScalaDocBasedPluginReport extends PluginReport {
 
-  test ("fake mojo") {
-    val ext = new ScalaMojoDescriptorExtractor
-
-
+  override def executeReport(locale: Locale) {
+    mojoScanner.setActiveExtractors(Set(ScalaMojoDescriptorExtractor.ROLE_HINT))
+    super.executeReport(locale)
   }
 }

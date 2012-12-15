@@ -1,17 +1,28 @@
 /*
- * Copyright 2012 Mark Adamcin
+ * This is free and unencumbered software released into the public domain.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Anyone is free to copy, modify, publish, use, compile, sell, or
+ * distribute this software, either in source code form or as a compiled
+ * binary, for any purpose, commercial or non-commercial, and by any
+ * means.
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * In jurisdictions that recognize copyright laws, the author or authors
+ * of this software dedicate any and all copyright interest in the
+ * software to the public domain. We make this dedication for the benefit
+ * of the public at large and to the detriment of our heirs and
+ * successors. We intend this dedication to be an overt act of
+ * relinquishment in perpetuity of all present and future rights to this
+ * software under copyright law.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * For more information, please refer to <http://unlicense.org/>
  */
 
 package net.adamcin.maven.scalamojo.extractor
@@ -26,7 +37,82 @@ import xml.NodeSeq
  * @since 1.0
  * @author Mark Adamcin
  */
-object ScaladocStringer {
+object ScalaDocStringer {
+
+  def commentInheritor(member: MemberEntity)(getter: Option[Comment] => Option[String]): Option[String] = {
+    getter(member.comment) match {
+      case Some(value) => Some(value)
+      case None => {
+        member.inDefinitionTemplates match {
+          case Nil => None
+          case tmpl :: tmpls => {
+            if (tmpl.isDocTemplate) {
+              tmpl.asInstanceOf[DocTemplateEntity].members.find { _.name == member.name } match {
+                case Some(inherited) => getter(inherited.comment)
+                case None => None
+              }
+            } else {
+              None
+            }
+          }
+        }
+      }
+    }
+  }
+
+  def getDescription(comment: Option[Comment]): Option[String] = {
+    comment match {
+      case None => None
+      case Some(c) => Option(toHtmlString(bodyToHtml(c.body)))
+    }
+  }
+
+  def getSince(comment: Option[Comment]): Option[String] = {
+    comment match {
+      case None => None
+      case Some(c) => {
+        c.since match {
+          case None => None
+          case Some(since) => {
+            val sinceNodes = since.blocks.flatMap {
+              (block) => block match {
+                case Paragraph(in) => Option(inlineToHtml(in))
+                case Code(data) => Option(xml.Text(data))
+                case _ => None
+              }
+            }.flatten
+            Option(toHtmlString(sinceNodes))
+          }
+        }
+      }
+    }
+  }
+
+  def getDeprecated(traitDef: Trait): Option[String] = {
+    traitDef.deprecation match {
+      case Some(deprecation) => Option(toHtmlString(bodyToHtml(deprecation)))
+      case None => traitDef.comment match {
+        case None => None
+        case Some(comment) => comment.deprecated match {
+          case None => None
+          case Some(deprecated) => Option(toHtmlString(bodyToHtml(deprecated)))
+        }
+      }
+    }
+  }
+
+  def getDeprecated(member: MemberEntity): Option[String] = {
+    member.deprecation match {
+      case Some(deprecation) => Option(toHtmlString(bodyToHtml(deprecation)))
+      case None => member.comment match {
+        case None => None
+        case Some(comment) => comment.deprecated match {
+          case None => None
+          case Some(deprecated) => Option(toHtmlString(bodyToHtml(deprecated)))
+        }
+      }
+    }
+  }
 
   def toHtmlString(el: NodeSeq): String = xml.Xhtml.toXhtml(el)
 
@@ -47,7 +133,7 @@ object ScaladocStringer {
     case Title(in, 2) => <h4>{ inlineToHtml(in) }</h4>
     case Title(in, 3) => <h5>{ inlineToHtml(in) }</h5>
     case Title(in, _) => <h6>{ inlineToHtml(in) }</h6>
-    case Paragraph(in) => <p>{ inlineToHtml(in) }</p>
+    case Paragraph(in) => <div>{ inlineToHtml(in) }</div>
     case Code(data) =>
       <pre>{ xml.Text(data) }</pre>
     case UnorderedList(items) =>

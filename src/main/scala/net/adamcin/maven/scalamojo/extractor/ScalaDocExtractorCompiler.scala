@@ -1,17 +1,28 @@
 /*
- * Copyright 2012 Mark Adamcin
+ * This is free and unencumbered software released into the public domain.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Anyone is free to copy, modify, publish, use, compile, sell, or
+ * distribute this software, either in source code form or as a compiled
+ * binary, for any purpose, commercial or non-commercial, and by any
+ * means.
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ * In jurisdictions that recognize copyright laws, the author or authors
+ * of this software dedicate any and all copyright interest in the
+ * software to the public domain. We make this dedication for the benefit
+ * of the public at large and to the detriment of our heirs and
+ * successors. We intend this dedication to be an overt act of
+ * relinquishment in perpetuity of all present and future rights to this
+ * software under copyright law.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * For more information, please refer to <http://unlicense.org/>
  */
 
 package net.adamcin.maven.scalamojo.extractor
@@ -24,10 +35,9 @@ import scala.collection.JavaConversions._
 import tools.nsc._
 import tools.nsc.reporters._
 import doc.{DocFactory, Universe, Settings}
-import util.{FakePos, NoPosition}
+import util.FakePos
 import org.slf4j.LoggerFactory
 import org.apache.maven.tools.plugin.PluginToolsRequest
-import org.apache.maven.tools.plugin.util.PluginUtils
 
 /**
  *
@@ -57,7 +67,7 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
         }
       }
 
-      import ScaladocStringer._
+      import ScalaDocStringer._
       universe match {
         case None => ()
         case Some(u) => findClass(u.rootPackage, descriptor.getImplementation) match {
@@ -65,23 +75,44 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
           case Some(c) => {
             descriptor.setLanguage("scala")
 
-            c.comment match {
+            getDeprecated(c) match {
               case None => ()
-              case Some(comment) => {
-                comment.body.summary match {
+              case Some(deprecated) => descriptor.setDeprecated(deprecated)
+            }
+
+            getDescription(c.comment) match {
+              case None => ()
+              case Some(description) => descriptor.setDescription(description)
+            }
+
+            getSince(c.comment) match {
+              case None => ()
+              case Some(since) => descriptor.setSince(since)
+            }
+
+            val memberMap = c.members.map {
+              (entity) => (entity.name, entity)
+            }.toMap
+
+            descriptor.getParameters.foreach {
+              (param) => {
+                memberMap.get(param.getName) match {
                   case None => ()
-                  case Some(summary) => {
-                    val description = toHtmlString(inlineToHtml(summary))
-                    descriptor.setDescription(description)
-                  }
-                }
-                comment.since match {
-                  case None => ()
-                  case Some(body) => body.summary match {
-                    case None => ()
-                    case Some(summary) => {
-                      val since = toHtmlString(inlineToHtml(summary))
-                      descriptor.setSince(since)
+                  case Some(member) => {
+                    getDeprecated(member) match {
+                      case None => ()
+                      case Some(deprecated) => param.setDeprecated(deprecated)
+                    }
+
+                    val inheritor = commentInheritor(member)_
+                    inheritor(getDescription) match {
+                      case None => ()
+                      case Some(description) => param.setDescription(description)
+                    }
+
+                    inheritor(getSince) match {
+                      case None => ()
+                      case Some(since) => param.setSince(since)
                     }
                   }
                 }
