@@ -53,6 +53,19 @@
         <maven>${maven.version}</maven>
     </prerequisites>
 
+    <url>http://adamcin.github.com/${project.artifactId}</url>
+
+    <scm>
+        <url>https://github.com/adamcin/${project.artifactId}</url>
+        <developerConnection>scm:git:git@github.com:adamcin/${project.artifactId}.git</developerConnection>
+        <connection>scm:git://github.com/adamcin/${project.artifactId}.git</connection>
+    </scm>
+
+    <issueManagement>
+        <system>github</system>
+        <url>http://github.com/adamcin/${project.artifactId}/issues/</url>
+    </issueManagement>
+
     <build>
         <plugins>
             <plugin>
