@@ -38,7 +38,7 @@ import collection.JavaConversions._
  * @since 1.0
  * @author Mark Adamcin
  */
-@Mojo(name = "report", threadSafe = true, requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
+@Mojo(name = "report", threadSafe = true, requiresDependencyResolution = ResolutionScope.COMPILE)
 @Execute(phase = LifecyclePhase.PROCESS_CLASSES)
 class ScalaDocBasedPluginReport extends PluginReport {
 

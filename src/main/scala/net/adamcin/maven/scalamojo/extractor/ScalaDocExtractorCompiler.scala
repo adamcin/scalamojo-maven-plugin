@@ -73,7 +73,8 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
         case Some(u) => findClass(u.rootPackage, descriptor.getImplementation) match {
           case None => ()
           case Some(c) => {
-            descriptor.setLanguage("scala")
+            // apparently, this causes a different injector to be looked up. Better stick with java.
+            //descriptor.setLanguage("scala")
 
             getDeprecated(c) match {
               case None => ()
