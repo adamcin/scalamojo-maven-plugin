@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ This is free and unencumbered software released into the public domain.
+  ~
+  ~ Anyone is free to copy, modify, publish, use, compile, sell, or
+  ~ distribute this software, either in source code form or as a compiled
+  ~ binary, for any purpose, commercial or non-commercial, and by any
+  ~ means.
+  ~
+  ~ In jurisdictions that recognize copyright laws, the author or authors
+  ~ of this software dedicate any and all copyright interest in the
+  ~ software to the public domain. We make this dedication for the benefit
+  ~ of the public at large and to the detriment of our heirs and
+  ~ successors. We intend this dedication to be an overt act of
+  ~ relinquishment in perpetuity of all present and future rights to this
+  ~ software under copyright law.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  ~ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  ~ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  ~ IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+  ~ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+  ~ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  ~ OTHER DEALINGS IN THE SOFTWARE.
+  ~
+  ~ For more information, please refer to <http://unlicense.org/>
+  -->
+
+<document>
+    <properties>
+        <title>scalamojo-maven-plugin</title>
+        <authors>
+            <person name="Mark Adamcin"/>
+        </authors>
+    </properties>
+    <body>
+        <section name="scalamojo-maven-plugin">
+            <p>The scalamojo-maven-plugin is an extension of the maven-plugin-plugin plugin report to decorate mojo
+                descriptors extracted by the
+                <a href="http://maven.apache.org/plugin-tools/maven-plugin-tools-annotations/index.html">Maven Plugin Tool for Annotations</a>
+                with additional mojo and parameter details extracted from scaladoc: description, @since, @deprecated.</p>
+            <p>If there are problems please let me know.</p>
+        </section>
+        <section name="Requirements">
+            <ul>
+                <li>Maven 3.0</li>
+                <li>JDK 1.5</li>
+                <li><bold>No need to install <a href="http://scala-lang.org">scala</a> !</bold></li>
+            </ul>
+        </section>
+       <p>Thanks to David Bernard and the team responsible for the <a href="http://davidb.github.com/scala-maven-plugin/">scala-maven-plugin</a>, which I use to compile all my maven plugins and whose generated maven site structure I lifted completely for my own use.</p>
+    </body>
+</document>

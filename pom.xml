@@ -126,6 +126,7 @@
                 <version>3.0</version>
                 <configuration>
                     <inputEncoding>utf-8</inputEncoding>
+                    <templateFile>${basedir}/src/site/template-site.vm</templateFile>
                     <reportPlugins>
                         <plugin>
                             <groupId>net.adamcin</groupId>

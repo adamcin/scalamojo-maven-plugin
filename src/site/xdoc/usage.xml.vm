@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+  <properties>
+    <title>Using the plugin</title>
+    <authors>
+      <person name="David Bernard" />
+    </authors>
+  </properties>
+  <body>
+    <h1>Using the plugin (common)</h1>
+    <section name="Configuration">
+      <p>to use the plugin you need to add this to your pom.xml</p>
+      <source>
+        <![CDATA[
+<project>
+  ...
+  <build>
+    ...
+    <plugins>
+      ...
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+          <extractors>
+            <extractor>java-annotations-and-scaladoc</extractor>
+          </extractors>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>descriptor</goal>
+              <goal>helpmojo</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+          ...
+          <reportPlugins>
+            <plugin>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>${project.artifactId}</artifactId>
+              <version>${project.version}</version>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-project-info-reports-plugin</artifactId>
+              <version>2.4</version>
+            </plugin>
+            ...
+          </reportPlugins>
+          ...
+        </configuration>
+      </plugins>
+    ...
+  </build>
+  ...
+</project>
+            ]]>
+      </source>
+    </section>
+
+    <section name="Displaying scalamojo help and version">
+      <source>mvn scalamojo:help</source>
+    </section>
+
+  </body>
+</document>

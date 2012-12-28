@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+  ~ This is free and unencumbered software released into the public domain.
+  ~
+  ~ Anyone is free to copy, modify, publish, use, compile, sell, or
+  ~ distribute this software, either in source code form or as a compiled
+  ~ binary, for any purpose, commercial or non-commercial, and by any
+  ~ means.
+  ~
+  ~ In jurisdictions that recognize copyright laws, the author or authors
+  ~ of this software dedicate any and all copyright interest in the
+  ~ software to the public domain. We make this dedication for the benefit
+  ~ of the public at large and to the detriment of our heirs and
+  ~ successors. We intend this dedication to be an overt act of
+  ~ relinquishment in perpetuity of all present and future rights to this
+  ~ software under copyright law.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  ~ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  ~ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  ~ IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+  ~ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+  ~ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  ~ OTHER DEALINGS IN THE SOFTWARE.
+  ~
+  ~ For more information, please refer to <http://unlicense.org/>
+  -->
+
+<project name="${project.name}">
+  <bannerLeft>
+    <name>${project.name}</name>
+    <href>${project.url}</href>
+  </bannerLeft>
+  <bannerRight>
+    <name>Scala-lang</name>
+    <href>http://www.scala-lang.org/</href>
+    <src>http://www.scala-lang.org/sites/default/files/newsflash_logo.png</src>
+  </bannerRight>
+  <publishDate position="left" format="yyyy-MM-dd HH:mm" />
+  <version position="left"/>
+  <poweredBy>
+    <logo name="Build with Maven" href="http://maven.apache.org" img="http://maven.apache.org/images/logos/maven-feather.png" />
+  </poweredBy>
+
+  <body>
+    <links>
+      <item name="Wiki" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/"/>
+      <item name="FAQ" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/frequently-asked-questions"/>
+      <!--<item name="Mailing-list" href="http://groups.google.com/group/maven-and-scala"/>-->
+    </links>
+    <menu name="Overview">
+      <item name="Introduction" href="index.html" />
+      <item name="Goals" href="plugin-info.html" />
+      <item name="Usage" href="usage.html" />
+      <!--<item name="FAQ" href="faq.html" />-->
+    </menu>
+      <!--
+    <menu name="Examples">
+      <item name="Compiling" href="example_compile.html" />
+      <item name="Incremental Compile" href="example_incremental.html" />
+      <item name="Continuous Compilation" href="example_cc.html" />
+      <item name="Continuous Testing" href="example_cctest.html" />
+      <item name="Scaladoc" href="example_doc.html" />
+      <item name="Running" href="example_run.html" />
+      <item name="Scripting" href="example_script.html" />
+      <item name="Scala Console" href="example_console.html" />
+      <item name="Mixed Java/Scala Projects" href="example_java.html" />
+      <item name="Creating Scalac Plugins" href="example_scalac_plugins.html" />
+      <item name="Articles..." href="articles.html" />
+    </menu>
+    -->
+    <menu ref="reports" />
+    <menu ref="modules" />
+  </body>
+</project>
