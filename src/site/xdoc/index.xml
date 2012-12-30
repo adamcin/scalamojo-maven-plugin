@@ -41,6 +41,81 @@
                 with additional mojo and parameter details extracted from scaladoc: description, @since, @deprecated.</p>
             <p>If there are problems please let me know.</p>
         </section>
+        <section name="Supported Annotations">
+            <div class="source"><pre class="prettyprint">package org.example.mojo
+
+import org.apache.maven.execution.MavenSession
+import org.apache.maven.plugin.AbstractMojo
+import org.apache.maven.plugin.MojoExecution
+import org.apache.maven.plugin.descriptor.PluginDescriptor
+import org.apache.maven.plugins.annotations.ResolutionScope
+import org.apache.maven.plugins.annotations.Component
+import org.apache.maven.plugins.annotations.Execute
+import org.apache.maven.plugins.annotations.InstantiationStrategy
+import org.apache.maven.plugins.annotations.LifecyclePhase
+import org.apache.maven.plugins.annotations.Mojo
+import org.apache.maven.plugins.annotations.Parameter
+import org.apache.maven.project.MavenProject
+import org.apache.maven.settings.Settings
+
+/**
+ * Mojo Description. @Mojo( name = &quot;&lt;goal-name&gt;&quot; ) is the minimal required annotation.
+ * @since &lt;since-text&gt;
+ * @deprecated &lt;deprecated-text&gt;
+ */
+@Mojo(  name = &quot;&lt;goal-name&gt;&quot;,
+        aggregator = &lt;false|true&gt;,
+        configurator = &quot;&lt;role hint&gt;&quot;,
+        executionStrategy = &quot;&lt;once-per-session|always&gt;&quot;,
+        inheritByDefault = &lt;true|false&gt;,
+        instantiationStrategy = InstantiationStrategy.&lt;strategy&gt;,
+        defaultPhase = &quot;&lt;phase-name&gt;&quot;,
+        requiresDependencyResolution = ResolutionScope.&lt;scope&gt;,
+        requiresDependencyCollection = ResolutionScope.&lt;scope&gt;, // (since Maven 3.0)
+        requiresDirectInvocation = &lt;false|true&gt;,
+        requiresOnline = &lt;false|true&gt;,
+        requiresProject = &lt;true|false&gt;,
+        requiresReports = &lt;false|true&gt;, // (unsupported since Maven 3.0)
+        threadSafe = &lt;false|true&gt; ) // (since Maven 3.0)
+@Execute(   goal = &quot;&lt;goal-name&gt;&quot;,
+            phase = LifecyclePhase.&lt;phase&gt;
+            lifecycle = &quot;&lt;lifecycle-id&gt;&quot; )
+class MyMojo extends AbstractMojo {
+    /**
+     * @since &lt;since-text&gt;
+     * @deprecated &lt;deprecated-text&gt;
+     */
+    @Parameter( alias = &quot;myAlias&quot;,
+                property = &quot;a.property&quot;,
+                defaultValue = &quot;an expression with ${variables} eventually&quot;,
+                readonly = &lt;false|true&gt;
+                required = &lt;false|true&gt; )
+    val parameter: String = null
+
+    @Component( role = MyComponentExtension.class,
+                hint = &quot;...&quot; )
+    var component: MyComponent = null
+
+    @Component
+    var session: MavenSession = null
+
+    @Component
+    var project: MavenProject = null
+
+    @Component
+    var mojo: MojoExecution = null
+
+    @Component // for Maven 3 only
+    var plugin: PluginDescriptor = null
+
+    @Component
+    var settings: Settings = null
+
+    def execute() {
+      ...
+    }
+}</pre></div>
+        </section>
         <section name="Requirements">
             <ul>
                 <li>Maven 3.0</li>
