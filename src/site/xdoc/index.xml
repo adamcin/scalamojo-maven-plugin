@@ -38,8 +38,15 @@
             <p>The scalamojo-maven-plugin is an extension of the maven-plugin-plugin plugin report to decorate mojo
                 descriptors extracted by the
                 <a href="http://maven.apache.org/plugin-tools/maven-plugin-tools-annotations/index.html">Maven Plugin Tool for Annotations</a>
-                with additional mojo and parameter details extracted from scaladoc: description, @since, @deprecated.</p>
+                with additional mojo and parameter details extracted from scaladoc: description, @since, and @deprecated.</p>
             <p>If there are problems please let me know.</p>
+        </section>
+        <section name="Requirements">
+            <ul>
+                <li>Maven 3.0</li>
+                <li>JDK 1.5</li>
+                <li>Use <a href="http://maven.apache.org/plugin-tools/maven-plugin-tools-annotations/">maven-plugin-tools-annotations</a> as shown below:</li>
+            </ul>
         </section>
         <section name="Supported Annotations">
             <div class="source"><pre class="prettyprint">package org.example.mojo
@@ -116,13 +123,5 @@ class MyMojo extends AbstractMojo {
     }
 }</pre></div>
         </section>
-        <section name="Requirements">
-            <ul>
-                <li>Maven 3.0</li>
-                <li>JDK 1.5</li>
-                <li><bold>No need to install <a href="http://scala-lang.org">scala</a> !</bold></li>
-            </ul>
-        </section>
-       <p>Thanks to David Bernard and the team responsible for the <a href="http://davidb.github.com/scala-maven-plugin/">scala-maven-plugin</a>, which I use to compile all my maven plugins and whose generated maven site structure I lifted completely for my own use.</p>
     </body>
 </document>

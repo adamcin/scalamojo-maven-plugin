@@ -27,15 +27,34 @@
   -->
 
 <project name="${project.name}">
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.3.0</version>
+    </skin>
+    <googleAnalyticsAccountId>UA-37073514-1</googleAnalyticsAccountId>
+    <custom>
+        <fluidoSkin>
+            <!--
+            <gitHub>
+                <projectId>adamcin/scalamojo-maven-plugin</projectId>
+                <ribbonColor>black</ribbonColor>
+            </gitHub>
+            -->
+        </fluidoSkin>
+    </custom>
+
   <bannerLeft>
     <name>${project.name}</name>
     <href>${project.url}</href>
   </bannerLeft>
+    <!--
   <bannerRight>
     <name>Scala-lang</name>
     <href>http://www.scala-lang.org/</href>
     <src>http://www.scala-lang.org/sites/default/files/newsflash_logo.png</src>
   </bannerRight>
+  -->
   <publishDate position="left" format="yyyy-MM-dd HH:mm" />
   <version position="left"/>
   <poweredBy>

@@ -30,17 +30,10 @@ package net.adamcin.maven.scalamojo.extractor
 import org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor
 import org.apache.maven.tools.plugin.{DefaultPluginToolsRequest, PluginToolsRequest}
 import org.apache.maven.project.MavenProject
-import org.apache.maven.plugin.descriptor.{PluginDescriptorBuilder, MojoDescriptor, PluginDescriptor}
+import org.apache.maven.plugin.descriptor.{MojoDescriptor, PluginDescriptor}
 import org.slf4j.LoggerFactory
 import collection.JavaConversions._
-import org.apache.maven.repository.RepositorySystem
-import org.apache.maven.artifact.repository.{ArtifactRepository, RepositoryRequest}
-import org.apache.maven.artifact.resolver.ArtifactResolutionRequest
-import org.apache.maven.model.Dependency
-import org.apache.maven.artifact.Artifact
-import org.apache.maven.artifact.resolver.filter.ScopeArtifactFilter
-import java.io.{InputStreamReader, File}
-import scalax.io.Resource
+import java.io.File
 import org.apache.maven.tools.plugin.util.PluginUtils
 import org.codehaus.plexus.component.annotations.{Requirement, Component}
 
