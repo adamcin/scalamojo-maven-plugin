@@ -2,46 +2,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor</title>
+          <title>net.adamcin.scalamojo.ScalaDocStringer</title>
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
-      <link type="text/css" media="screen" rel="stylesheet" href="../../../../../lib/template.css" />
-      <script type="text/javascript" src="../../../../../lib/jquery.js"></script>
-      <script type="text/javascript" src="../../../../../lib/jquery-ui.js"></script>
-      <script type="text/javascript" src="../../../../../lib/template.js"></script>
-      <script type="text/javascript" src="../../../../../lib/tools.tooltip.js"></script>
+      <link type="text/css" media="screen" rel="stylesheet" href="../../../lib/template.css" />
+      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
     
         </head>
-        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="type">
+        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="value">
       <div id="definition">
-        <a title="Go to companion" href="ScalaDocMojoDescriptorExtractor$.html"><img src="../../../../../lib/class_to_object_big.png" /></a>
-        <p id="owner"><a name="net" class="extype" href="../../../../package.html">net</a>.<a name="net.adamcin" class="extype" href="../../../package.html">adamcin</a>.<a name="net.adamcin.maven" class="extype" href="../../package.html">maven</a>.<a name="net.adamcin.maven.scalamojo" class="extype" href="../package.html">scalamojo</a>.<a name="net.adamcin.maven.scalamojo.extractor" class="extype" href="package.html">extractor</a></p>
-        <h1><a title="Go to companion" href="ScalaDocMojoDescriptorExtractor$.html">ScalaDocMojoDescriptorExtractor</a></h1>
+        <img src="../../../lib/object_big.png" />
+        <p id="owner"><a name="net" class="extype" href="../../package.html">net</a>.<a name="net.adamcin" class="extype" href="../package.html">adamcin</a>.<a name="net.adamcin.scalamojo" class="extype" href="package.html">scalamojo</a></p>
+        <h1>ScalaDocStringer</h1>
       </div>
 
       <h4 class="signature" id="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">class</span>
+        <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <span class="name">ScalaDocMojoDescriptorExtractor</span><span class="result"> extends <span name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor" class="extype">MojoDescriptorExtractor</span></span>
+        <span class="name">ScalaDocStringer</span><span class="result"> extends AnyRef</span>
       </span>
       </h4>
       
-      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>MojoDescriptorExtractor implementation that delegates to the OOTB JavaAnnotationsExtractor
-(<code>&lt;extractor&gt;java-annotations&lt;/extractor&gt;</code>) to extract
-all the details it can from the standard java annotations, which are retained
-in the .class files after compilation, and then decorates those extracted descriptors
-with the details that can only be found in the javadoc/scaladoc comments in the
-source files, namely: <code>@deprecated</code>, <code>@since</code>, and most importantly,
-<code>description</code>
-</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
-                <span class="name">@Component</span><span class="args">()</span>
-              
-        </dd><dt>Since</dt><dd><p>0.6.0</p></dd></dl><div class="toggleContainer block">
+      <div class="fullcommenttop" id="comment"><div class="comment cmt"><p>Methods useful for generating html strings from text in scaladoc comments, mostly
+ripped straight from the ScalaDoc tool's HTML generator logic</p></div><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.0</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor" class="extype">MojoDescriptorExtractor</span>, AnyRef, <span name="scala.Any" class="extype">Any</span></div>
+          <div class="superTypes hiddenContent">AnyRef, <span name="scala.Any" class="extype">Any</span></div>
         </div></div>
     
 
@@ -55,7 +46,7 @@ source files, namely: <code>@deprecated</code>, <code>@since</code>, and most im
               <span class="filtertype">Inherited</span>
               <ol><li class="hideall out"><span>Hide All</span></li>
               <li class="showall in"><span>Show all</span></li></ol>
-              <ol id="linearization"><li name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor" class="in"><span>ScalaDocMojoDescriptorExtractor</span></li><li name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor" class="in"><span>MojoDescriptorExtractor</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
+              <ol id="linearization"><li name="net.adamcin.scalamojo.ScalaDocStringer" class="in"><span>ScalaDocStringer</span></li><li name="scala.AnyRef" class="in"><span>AnyRef</span></li><li name="scala.Any" class="in"><span>Any</span></li></ol>
             </div>
         <div id="visbl">
             <span class="filtertype">Visibility</span>
@@ -65,22 +56,7 @@ source files, namely: <code>@deprecated</code>, <code>@since</code>, and most im
 
       <div id="template">
         <div id="allMembers">
-        <div class="members" id="constructors">
-              <h3>Instance Constructors</h3>
-              <ol><li visbl="pub" name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor#this" data-isabs="false">
-      <a id="this:ScalaDocMojoDescriptorExtractor"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">new</span>
-      </span>
-      <span class="symbol">
-        <span class="name">ScalaDocMojoDescriptorExtractor</span><span class="params">()</span>
-      </span>
-      </h4>
-      
-    </li></ol>
-            </div>
+        
 
         
 
@@ -160,6 +136,30 @@ source files, namely: <code>@deprecated</code>, <code>@since</code>, and most im
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#blockToHtml" data-isabs="false">
+      <a id="blockToHtml(Block):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">blockToHtml</span><span class="params">(<span name="block">block: <span name="scala.tools.nsc.doc.model.comment.Block" class="extype">Block</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#bodyToHtml" data-isabs="false">
+      <a id="bodyToHtml(Body):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bodyToHtml</span><span class="params">(<span name="body">body: <span name="scala.tools.nsc.doc.model.comment.Body" class="extype">Body</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
     </li><li visbl="prt" name="scala.AnyRef#clone" data-isabs="false">
       <a id="clone():AnyRef"></a>
       <h4 class="signature">
@@ -171,10 +171,47 @@ source files, namely: <code>@deprecated</code>, <code>@since</code>, and most im
         <span class="name">clone</span><span class="params">()</span><span class="result">: AnyRef</span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="java.lang" class="extype" href="../../../../../java/lang/package.html">lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="java.lang" class="extype" href="../../../java/lang/package.html">lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#commentInheritor" data-isabs="false">
+      <a id="commentInheritor(MemberEntity)((Option[Comment]) ⇒ Option[String]):Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">commentInheritor</span><span class="params">(<span name="member">member: <span name="scala.tools.nsc.doc.model.MemberEntity" class="extype">MemberEntity</span></span>)</span><span class="params">(<span name="getter">getter: (<span name="scala.Option" class="extype">Option</span>[<span name="scala.tools.nsc.doc.model.comment.Comment" class="extype">Comment</span>]) ⇒ <span name="scala.Option" class="extype">Option</span>[String]</span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#commentToHtml" data-isabs="false">
+      <a id="commentToHtml(Comment):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">commentToHtml</span><span class="params">(<span name="comment">comment: <span name="scala.tools.nsc.doc.model.comment.Comment" class="extype">Comment</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Transforms a comment into an styled HTML tree representing its body.</p>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#commentToHtml" data-isabs="false">
+      <a id="commentToHtml(Option[Comment]):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">commentToHtml</span><span class="params">(<span name="comment">comment: <span name="scala.Option" class="extype">Option</span>[<span name="scala.tools.nsc.doc.model.comment.Comment" class="extype">Comment</span>]</span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Transforms an optional comment into an styled HTML tree representing its body if it is defined, or into an empty
+node sequence if it is not.</p>
     </li><li visbl="pub" name="scala.AnyRef#eq" data-isabs="false">
       <a id="eq(AnyRef):Boolean"></a>
       <h4 class="signature">
@@ -199,25 +236,6 @@ source files, namely: <code>@deprecated</code>, <code>@since</code>, and most im
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li visbl="pub" name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor#execute" data-isabs="false">
-      <a id="execute(PluginToolsRequest):List[MojoDescriptor]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">execute</span><span class="params">(<span name="request">request: <span name="org.apache.maven.tools.plugin.PluginToolsRequest" class="extype">PluginToolsRequest</span></span>)</span><span class="result">: <span name="java.util.List" class="extype">List</span>[<span name="org.apache.maven.plugin.descriptor.MojoDescriptor" class="extype">MojoDescriptor</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">First calls the java-annotations extractor to generate the initial list of MojoDescriptors,
-then compiles the scala sources using a ScalaDoc-enabled compiler to generate a model,
-which is then used by a decorating function to add description, @since, and @deprecated text
-to each MojoDescriptor</p><div class="fullcomment"><div class="comment cmt"><p>First calls the java-annotations extractor to generate the initial list of MojoDescriptors,
-then compiles the scala sources using a ScalaDoc-enabled compiler to generate a model,
-which is then used by a decorating function to add description, @since, and @deprecated text
-to each MojoDescriptor</p></div><dl class="paramcmts block"><dt class="param">request</dt><dd class="cmt"><p>the PluginToolsRequest</p></dd><dt>returns</dt><dd class="cmt"><p>a java list of extracted MojoDescriptors
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor" class="extype" href="">ScalaDocMojoDescriptorExtractor</a> → MojoDescriptorExtractor</dd></dl></div>
     </li><li visbl="prt" name="scala.AnyRef#finalize" data-isabs="false">
       <a id="finalize():Unit"></a>
       <h4 class="signature">
@@ -229,7 +247,7 @@ to each MojoDescriptor</p></div><dl class="paramcmts block"><dt class="param">re
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span name="scala.Unit" class="extype">Unit</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="java.lang" class="extype" href="../../../../../java/lang/package.html">lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a name="java.lang" class="extype" href="../../../java/lang/package.html">lang</a>] </dd><dt>Definition Classes</dt><dd>AnyRef</dd><dt>Annotations</dt><dd>
                 <span class="name">@throws</span><span class="args">()</span>
               
         </dd></dl></div>
@@ -245,19 +263,66 @@ to each MojoDescriptor</p></div><dl class="paramcmts block"><dt class="param">re
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li visbl="pub" name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor#getSourceRoots" data-isabs="false">
-      <a id="getSourceRoots(Option[MavenProject]):List[String]"></a>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#getDeprecated" data-isabs="false">
+      <a id="getDeprecated(MemberEntity):Option[String]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getSourceRoots</span><span class="params">(<span name="p">p: <span name="scala.Option" class="extype">Option</span>[<span name="org.apache.maven.project.MavenProject" class="extype">MavenProject</span>]</span>)</span><span class="result">: List[String]</span>
+        <span class="name">getDeprecated</span><span class="params">(<span name="member">member: <span name="scala.tools.nsc.doc.model.MemberEntity" class="extype">MemberEntity</span></span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">List the source roots specified by the MavenProject, if available</p><div class="fullcomment"><div class="comment cmt"><p>List the source roots specified by the MavenProject, if available</p></div><dl class="paramcmts block"><dt class="param">p</dt><dd class="cmt"><p>the optional MavenProject</p></dd><dt>returns</dt><dd class="cmt"><p>a list of source roots
-</p></dd></dl></div>
+      
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#getDeprecated" data-isabs="false">
+      <a id="getDeprecated(Trait):Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDeprecated</span><span class="params">(<span name="traitDef">traitDef: <span name="scala.tools.nsc.doc.model.Trait" class="extype">Trait</span></span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#getDescription" data-isabs="false">
+      <a id="getDescription(Option[Comment]):Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getDescription</span><span class="params">(<span name="comment">comment: <span name="scala.Option" class="extype">Option</span>[<span name="scala.tools.nsc.doc.model.comment.Comment" class="extype">Comment</span>]</span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#getSince" data-isabs="false">
+      <a id="getSince(Option[Comment]):Option[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getSince</span><span class="params">(<span name="comment">comment: <span name="scala.Option" class="extype">Option</span>[<span name="scala.tools.nsc.doc.model.comment.Comment" class="extype">Comment</span>]</span>)</span><span class="result">: <span name="scala.Option" class="extype">Option</span>[String]</span>
+      </span>
+      </h4>
+      
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#hasPage" data-isabs="false">
+      <a id="hasPage(DocTemplateEntity):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hasPage</span><span class="params">(<span name="e">e: <span name="scala.tools.nsc.doc.model.DocTemplateEntity" class="extype">DocTemplateEntity</span></span>)</span><span class="result">: <span name="scala.Boolean" class="extype">Boolean</span></span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scala.AnyRef#hashCode" data-isabs="false">
       <a id="hashCode():Int"></a>
       <h4 class="signature">
@@ -270,6 +335,18 @@ to each MojoDescriptor</p></div><dl class="paramcmts block"><dt class="param">re
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#inlineToHtml" data-isabs="false">
+      <a id="inlineToHtml(Inline):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">inlineToHtml</span><span class="params">(<span name="inl">inl: <span name="scala.tools.nsc.doc.model.comment.Inline" class="extype">Inline</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scala.Any#isInstanceOf" data-isabs="false">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <h4 class="signature">
@@ -282,28 +359,15 @@ to each MojoDescriptor</p></div><dl class="paramcmts block"><dt class="param">re
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li visbl="pub" name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor#javaAnnotationsExtractor" data-isabs="false">
-      <a id="javaAnnotationsExtractor:MojoDescriptorExtractor"></a>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#listItemsToHtml" data-isabs="false">
+      <a id="listItemsToHtml(Seq[Block]):NodeSeq"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">var</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">javaAnnotationsExtractor</span><span class="result">: <span name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor" class="extype">MojoDescriptorExtractor</span></span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt">the java-annotations extractor to generate the initial list of MojoDescriptors
-that must be decorated.</p>
-    </li><li visbl="pub" name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor#log" data-isabs="false">
-      <a id="log:Logger"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">log</span><span class="result">: <span name="org.slf4j.Logger" class="extype">Logger</span></span>
+        <span class="name">listItemsToHtml</span><span class="params">(<span name="items">items: Seq[<span name="scala.tools.nsc.doc.model.comment.Block" class="extype">Block</span>]</span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
       </span>
       </h4>
       
@@ -355,6 +419,42 @@ that must be decorated.</p>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#templateToHtml" data-isabs="false">
+      <a id="templateToHtml(TemplateEntity):Text"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">templateToHtml</span><span class="params">(<span name="tpl">tpl: <span name="scala.tools.nsc.doc.model.TemplateEntity" class="extype">TemplateEntity</span></span>)</span><span class="result">: <span name="scala.xml.Text" class="extype">Text</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns the HTML code that represents the template in <code>tpl</code> as a hyperlinked name.</p>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#templatesToHtml" data-isabs="false">
+      <a id="templatesToHtml(List[TemplateEntity],NodeSeq):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">templatesToHtml</span><span class="params">(<span name="tplss">tplss: List[<span name="scala.tools.nsc.doc.model.TemplateEntity" class="extype">TemplateEntity</span>]</span>, <span name="sep">sep: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt">Returns the HTML code that represents the templates in <code>tpls</code> as a list of hyperlinked names.</p>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#toHtmlString" data-isabs="false">
+      <a id="toHtmlString(NodeSeq):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toHtmlString</span><span class="params">(<span name="el">el: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>)</span><span class="result">: String</span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scala.AnyRef#toString" data-isabs="false">
       <a id="toString():String"></a>
       <h4 class="signature">
@@ -367,19 +467,30 @@ that must be decorated.</p>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li visbl="pub" name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor#useCompiler" data-isabs="false">
-      <a id="useCompiler(PluginToolsRequest,List[String],List[MojoDescriptor]):List[MojoDescriptor]"></a>
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#typeToHtml" data-isabs="false">
+      <a id="typeToHtml(TypeEntity,Boolean):NodeSeq"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">useCompiler</span><span class="params">(<span name="request">request: <span name="org.apache.maven.tools.plugin.PluginToolsRequest" class="extype">PluginToolsRequest</span></span>, <span name="sourceFiles">sourceFiles: List[String]</span>, <span name="descriptors">descriptors: List[<span name="org.apache.maven.plugin.descriptor.MojoDescriptor" class="extype">MojoDescriptor</span>]</span>)</span><span class="result">: <span name="java.util.List" class="extype">List</span>[<span name="org.apache.maven.plugin.descriptor.MojoDescriptor" class="extype">MojoDescriptor</span>]</span>
+        <span class="name">typeToHtml</span><span class="params">(<span name="tpe">tpe: <span name="scala.tools.nsc.doc.model.TypeEntity" class="extype">TypeEntity</span></span>, <span name="hasLinks">hasLinks: <span name="scala.Boolean" class="extype">Boolean</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Create a new ScalaDoc compiler and decorate the list of descriptors</p><div class="fullcomment"><div class="comment cmt"><p>Create a new ScalaDoc compiler and decorate the list of descriptors</p></div><dl class="paramcmts block"><dt class="param">request</dt><dd class="cmt"><p>the PluginToolsRequest</p></dd><dt class="param">sourceFiles</dt><dd class="cmt"><p>the list of scala sources to compile</p></dd><dt class="param">descriptors</dt><dd class="cmt"><p>the list of descriptors extracted by the java-annotations MojoDescriptor</p></dd><dt>returns</dt><dd class="cmt"><p>a list of decorated MojoDescriptors
-</p></dd></dl></div>
+      
+    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer#typesToHtml" data-isabs="false">
+      <a id="typesToHtml(List[TypeEntity],Boolean,NodeSeq):NodeSeq"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">typesToHtml</span><span class="params">(<span name="tpess">tpess: List[<span name="scala.tools.nsc.doc.model.TypeEntity" class="extype">TypeEntity</span>]</span>, <span name="hasLinks">hasLinks: <span name="scala.Boolean" class="extype">Boolean</span></span>, <span name="sep">sep: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>)</span><span class="result">: <span name="scala.xml.NodeSeq" class="extype">NodeSeq</span></span>
+      </span>
+      </h4>
+      
     </li><li visbl="pub" name="scala.AnyRef#wait" data-isabs="false">
       <a id="wait():Unit"></a>
       <h4 class="signature">
@@ -428,29 +539,11 @@ that must be decorated.</p>
     </li></ol>
             </div>
 
-        <div class="values members" id="values">
-              <h3>Deprecated Value Members</h3>
-              <ol><li visbl="pub" name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor#execute" data-isabs="false">
-      <a id="execute(MavenProject,PluginDescriptor):List[MojoDescriptor]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name deprecated" title="Deprecated: Use execute(PluginToolsRequest) instead. Provided for backward compatibility with maven-plugin-plugin HtmlTag(&amp;lt;) 2.5.">execute</span><span class="params">(<span name="project">project: <span name="org.apache.maven.project.MavenProject" class="extype">MavenProject</span></span>, <span name="pluginDescriptor">pluginDescriptor: <span name="org.apache.maven.plugin.descriptor.PluginDescriptor" class="extype">PluginDescriptor</span></span>)</span><span class="result">: <span name="java.util.List" class="extype">List</span>[<span name="org.apache.maven.plugin.descriptor.MojoDescriptor" class="extype">MojoDescriptor</span>]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a name="net.adamcin.maven.scalamojo.extractor.ScalaDocMojoDescriptorExtractor" class="extype" href="">ScalaDocMojoDescriptorExtractor</a> → MojoDescriptorExtractor</dd><dt>Deprecated</dt><dd class="cmt"><p>Use execute(PluginToolsRequest) instead. Provided for backward compatibility with maven-plugin-plugin &lt; 2.5.</p></dd><dt>See also</dt><dd><span class="cmt"><p>MojoDescriptorExtractor#execute(MavenProject, PluginDescriptor)
-</p></span></dd></dl></div>
-    </li></ol>
-            </div>
+        
         </div>
 
         <div id="inheritedMembers">
-        <div name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor" class="parent">
-              <h3>Inherited from <span name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor" class="extype">MojoDescriptorExtractor</span></h3>
-            </div><div name="scala.AnyRef" class="parent">
+        <div name="scala.AnyRef" class="parent">
               <h3>Inherited from AnyRef</h3>
             </div><div name="scala.Any" class="parent">
               <h3>Inherited from <span name="scala.Any" class="extype">Any</span></h3>
