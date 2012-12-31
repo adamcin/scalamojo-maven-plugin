@@ -25,7 +25,7 @@
  * For more information, please refer to <http://unlicense.org/>
  */
 
-package net.adamcin.maven.scalamojo.extractor
+package net.adamcin.scalamojo
 
 import tools.nsc.doc.model._
 import tools.nsc.doc.model.comment._

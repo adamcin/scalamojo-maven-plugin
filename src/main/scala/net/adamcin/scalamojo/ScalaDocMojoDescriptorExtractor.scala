@@ -25,7 +25,7 @@
  * For more information, please refer to <http://unlicense.org/>
  */
 
-package net.adamcin.maven.scalamojo.extractor
+package net.adamcin.scalamojo
 
 import org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor
 import org.apache.maven.tools.plugin.{DefaultPluginToolsRequest, PluginToolsRequest}

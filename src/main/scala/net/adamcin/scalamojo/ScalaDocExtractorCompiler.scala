@@ -25,7 +25,7 @@
  * For more information, please refer to <http://unlicense.org/>
  */
 
-package net.adamcin.maven.scalamojo.extractor
+package net.adamcin.scalamojo
 
 import org.apache.maven.project.MavenProject
 import java.io.File
@@ -38,6 +38,8 @@ import doc.{DocFactory, Universe, Settings}
 import util.FakePos
 import org.slf4j.LoggerFactory
 import org.apache.maven.tools.plugin.PluginToolsRequest
+import scala.Some
+import util.FakePos
 
 /**
  * Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function

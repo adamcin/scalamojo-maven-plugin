@@ -25,43 +25,28 @@
  * For more information, please refer to <http://unlicense.org/>
  */
 
-package net.adamcin.maven.scalamojo.extractor
+package net.adamcin.scalamojo
 
-import tools.nsc.reporters.AbstractReporter
-import tools.nsc.util.{NoPosition, Position}
-import org.slf4j.LoggerFactory
-import tools.nsc.doc.Settings
+import org.apache.maven.plugin.plugin.PluginReport
+import java.util.Locale
+import org.apache.maven.plugins.annotations.{ResolutionScope, LifecyclePhase, Execute, Mojo}
+
+import collection.JavaConversions._
 
 /**
- * Implementation of Reporter for use by DocFactory compiler
+ * Maven report goal that overrides the maven-plugin-plugin report goal to limit the active extractors to
+ * java-annotations-and-scaldoc. This is generally necessary for reliable scala plugin report generation using this
+ * plugin's extractor, since the java-annotations extractor must always be on the classpath alongside it,
+ * and the maven-plugin-plugin report does not expose a similar configuration to that of the xdoc goal.
  * @since 0.6.0
  * @author Mark Adamcin
  */
-class MojoReporter(val settings: Settings, val quiet: Boolean) extends AbstractReporter {
-  private val log = LoggerFactory.getLogger(getClass)
+@Mojo(name = "report", threadSafe = true, requiresDependencyResolution = ResolutionScope.COMPILE)
+@Execute(phase = LifecyclePhase.PROCESS_CLASSES)
+class ScalaDocBasedPluginReport extends PluginReport {
 
-  override def hasErrors = false
-
-  def display(pos: Position, msg: String, severity: Severity) {
-    val posIn =
-      if (pos eq null) {
-        NoPosition
-      } else if (pos.isDefined) {
-        pos.inUltimateSource(pos.source)
-      } else {
-        pos
-      }
-
-    if (!quiet) {
-      severity match {
-        case INFO => log.info(msg)
-        case WARNING => log.warn(msg)
-        case ERROR => log.error(msg)
-      }
-    }
-  }
-
-  def displayPrompt() {
-    log.info("[displayPrompt]")
+  override def executeReport(locale: Locale) {
+    mojoScanner.setActiveExtractors(Set(ScalaDocMojoDescriptorExtractor.ROLE_HINT))
+    super.executeReport(locale)
   }
 }
