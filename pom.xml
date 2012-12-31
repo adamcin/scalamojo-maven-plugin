@@ -81,15 +81,19 @@
 
     <developers>
         <developer>
+            <id>madamcin</id>
             <name>Mark Adamcin</name>
             <email>adamcin@gmail.com</email>
+            <url>http://adamcin.net</url>
+            <organization>Acquity Group</organization>
+            <organizationUrl>http://www.acquitygroup.com</organizationUrl>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
             </roles>
-            <url>http://adamcin.net</url>
         </developer>
     </developers>
+
     <build>
         <plugins>
             <plugin>
@@ -97,14 +101,25 @@
                 <artifactId>scala-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
+                    <args>
+                        <arg>-target:jvm-1.5</arg>
+                        <arg>-no-specialization</arg>
+                        <arg>-deprecation</arg>
+                    </args>
                     <recompileMode>incremental</recompileMode>
-                    <useZincServer>true</useZincServer>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
+                            <goal>add-source</goal>
                             <goal>compile</goal>
                             <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>doc-jar</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -135,6 +150,19 @@
                     <execution>
                         <goals>
                             <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -212,6 +240,36 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.4</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>

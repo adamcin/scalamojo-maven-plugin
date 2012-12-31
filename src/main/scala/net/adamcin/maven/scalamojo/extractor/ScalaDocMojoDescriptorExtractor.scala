@@ -37,7 +37,7 @@ import java.io.File
 import org.apache.maven.tools.plugin.util.PluginUtils
 import org.codehaus.plexus.component.annotations.{Requirement, Component}
 
-object ScalaMojoDescriptorExtractor {
+object ScalaDocMojoDescriptorExtractor {
   final val ROLE = classOf[MojoDescriptorExtractor]
   final val ROLE_HINT = "java-annotations-and-scaladoc"
 }
@@ -47,28 +47,38 @@ object ScalaMojoDescriptorExtractor {
  * all the details it can from the standard java annotations, which are retained
  * in the .class files after compilation, and then decorates those extracted descriptors
  * with the details that can only be found in the javadoc/scaladoc comments in the
- * source files, namely: <code>deprecated</code>, <code>since</code>, and most importantly,
+ * source files, namely: <code>@deprecated</code>, <code>@since</code>, and most importantly,
  * <code>description</code>
  *
- * @since 1.0
+ * @since 0.6.0
  * @author Mark Adamcin
  */
-@Component(role = ScalaMojoDescriptorExtractor.ROLE, hint = ScalaMojoDescriptorExtractor.ROLE_HINT)
-class ScalaMojoDescriptorExtractor extends MojoDescriptorExtractor {
-  val log = LoggerFactory.getLogger(getClass)
+@Component(role = ScalaDocMojoDescriptorExtractor.ROLE, hint = ScalaDocMojoDescriptorExtractor.ROLE_HINT)
+class ScalaDocMojoDescriptorExtractor extends MojoDescriptorExtractor {
+  private val log = LoggerFactory.getLogger(getClass)
 
   /**
-   * Bind the java-annotations extractor to generate the initial list of MojoDescriptors
-   * that must be decorated.
+   * the java-annotations extractor
    */
-  @Requirement(role = ScalaMojoDescriptorExtractor.ROLE, hint = "java-annotations")
+  @Requirement(role = ScalaDocMojoDescriptorExtractor.ROLE, hint = "java-annotations")
   var javaAnnotationsExtractor: MojoDescriptorExtractor = null
 
-  @deprecated
+  /**
+   * @deprecated Use execute(PluginToolsRequest) instead. Provided for backward compatibility with maven-plugin-plugin &lt; 2.5.
+   * @see MojoDescriptorExtractor#execute(MavenProject, PluginDescriptor)
+   */
   def execute(project: MavenProject, pluginDescriptor: PluginDescriptor): java.util.List[MojoDescriptor] = {
     execute(new DefaultPluginToolsRequest(project, pluginDescriptor))
   }
 
+  /**
+   * First calls the java-annotations extractor to generate the initial list of MojoDescriptors,
+   * then compiles the scala sources using a ScalaDoc-enabled compiler to generate a model,
+   * which is then used by a decorating function to add description, @since, and @deprecated text
+   * to each MojoDescriptor
+   * @param request the PluginToolsRequest
+   * @return a java list of extracted MojoDescriptors
+   */
   def execute(request: PluginToolsRequest): java.util.List[MojoDescriptor] = {
     val descriptors = javaAnnotationsExtractor.execute(request).toList
 
@@ -81,6 +91,11 @@ class ScalaMojoDescriptorExtractor extends MojoDescriptorExtractor {
     useCompiler(request, sourceFiles, descriptors)
   }
 
+  /**
+   * List the source roots specified by the MavenProject, if available
+   * @param p the optional MavenProject
+   * @return a list of source roots
+   */
   def getSourceRoots(p: Option[MavenProject]): List[String] = {
     val roots = p match {
       case None => Nil
@@ -98,6 +113,13 @@ class ScalaMojoDescriptorExtractor extends MojoDescriptorExtractor {
     roots
   }
 
+  /**
+   * Create a new ScalaDoc compiler and decorate the list of descriptors
+   * @param request the PluginToolsRequest
+   * @param sourceFiles the list of scala sources to compile
+   * @param descriptors the list of descriptors extracted by the java-annotations MojoDescriptor
+   * @return a list of decorated MojoDescriptors
+   */
   def useCompiler(request: PluginToolsRequest, sourceFiles: List[String], descriptors: List[MojoDescriptor]): java.util.List[MojoDescriptor] = {
     val compiler = new ScalaDocExtractorCompiler(request)
     val decorator = compiler.extractDescriptorDecorator(sourceFiles)

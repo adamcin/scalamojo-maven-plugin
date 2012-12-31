@@ -34,11 +34,11 @@ import tools.nsc.doc.Settings
 
 /**
  * Implementation of Reporter for use by DocFactory compiler
- * @since 1.0
+ * @since 0.6.0
  * @author Mark Adamcin
  */
 class MojoReporter(val settings: Settings, val quiet: Boolean) extends AbstractReporter {
-  val log = LoggerFactory.getLogger(getClass)
+  private val log = LoggerFactory.getLogger(getClass)
 
   override def hasErrors = false
 

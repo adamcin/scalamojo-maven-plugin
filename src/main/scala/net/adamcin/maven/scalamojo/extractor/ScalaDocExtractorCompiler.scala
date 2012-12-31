@@ -41,11 +41,11 @@ import org.apache.maven.tools.plugin.PluginToolsRequest
 
 /**
  * Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function
- * @since 1.0
+ * @since 0.6.0
  * @author Mark Adamcin
  */
 class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
-  val log = LoggerFactory.getLogger(getClass)
+  private val log = LoggerFactory.getLogger(getClass)
 
   def decorate(universe: Option[Universe])(descriptor: MojoDescriptor): MojoDescriptor = {
     if (descriptor.getGoal == "help") {

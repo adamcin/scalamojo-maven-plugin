@@ -33,8 +33,9 @@ import tools.nsc.doc.model.comment._
 import xml.NodeSeq
 
 /**
- *
- * @since 1.0
+ * Methods useful for generating html strings from text in scaladoc comments, mostly
+ * ripped straight from the ScalaDoc tool's HTML generator logic
+ * @since 0.6.0
  * @author Mark Adamcin
  */
 object ScalaDocStringer {

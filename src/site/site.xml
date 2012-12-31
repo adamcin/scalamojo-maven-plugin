@@ -44,10 +44,10 @@
         </fluidoSkin>
     </custom>
 
-  <bannerLeft>
-    <name>${project.name}</name>
-    <href>${project.url}</href>
-  </bannerLeft>
+    <bannerLeft>
+        <name>${project.name}</name>
+        <href>${project.url}</href>
+    </bannerLeft>
     <!--
   <bannerRight>
     <name>Scala-lang</name>
@@ -55,40 +55,41 @@
     <src>http://www.scala-lang.org/sites/default/files/newsflash_logo.png</src>
   </bannerRight>
   -->
-  <publishDate position="left" format="yyyy-MM-dd HH:mm" />
-  <version position="left"/>
-  <poweredBy>
-    <logo name="Build with Maven" href="http://maven.apache.org" img="http://maven.apache.org/images/logos/maven-feather.png" />
-  </poweredBy>
+    <publishDate position="left" format="yyyy-MM-dd HH:mm" />
+    <version position="left"/>
+    <poweredBy>
+        <logo name="Build with Maven" href="http://maven.apache.org" img="http://maven.apache.org/images/logos/maven-feather.png" />
+    </poweredBy>
 
-  <body>
-    <links>
-      <item name="Wiki" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/"/>
-      <item name="FAQ" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/frequently-asked-questions"/>
-      <!--<item name="Mailing-list" href="http://groups.google.com/group/maven-and-scala"/>-->
-    </links>
-    <menu name="Overview">
-      <item name="Introduction" href="index.html" />
-      <item name="Goals" href="plugin-info.html" />
-      <item name="Usage" href="usage.html" />
-      <!--<item name="FAQ" href="faq.html" />-->
-    </menu>
-      <!--
-    <menu name="Examples">
-      <item name="Compiling" href="example_compile.html" />
-      <item name="Incremental Compile" href="example_incremental.html" />
-      <item name="Continuous Compilation" href="example_cc.html" />
-      <item name="Continuous Testing" href="example_cctest.html" />
-      <item name="Scaladoc" href="example_doc.html" />
-      <item name="Running" href="example_run.html" />
-      <item name="Scripting" href="example_script.html" />
-      <item name="Scala Console" href="example_console.html" />
-      <item name="Mixed Java/Scala Projects" href="example_java.html" />
-      <item name="Creating Scalac Plugins" href="example_scalac_plugins.html" />
-      <item name="Articles..." href="articles.html" />
-    </menu>
-    -->
-    <menu ref="reports" />
-    <menu ref="modules" />
-  </body>
+    <body>
+        <links>
+            <item name="Wiki" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/"/>
+            <item name="FAQ" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/frequently-asked-questions"/>
+            <!--<item name="Mailing-list" href="http://groups.google.com/group/maven-and-scala"/>-->
+        </links>
+        <menu name="Overview">
+            <item name="Introduction" href="index.html" />
+            <item name="Goals" href="plugin-info.html" />
+            <item name="Usage" href="usage.html" />
+            <item name="ScalaDocs" href="scaladocs/index.html" />
+            <!--<item name="FAQ" href="faq.html" />-->
+        </menu>
+        <!--
+      <menu name="Examples">
+        <item name="Compiling" href="example_compile.html" />
+        <item name="Incremental Compile" href="example_incremental.html" />
+        <item name="Continuous Compilation" href="example_cc.html" />
+        <item name="Continuous Testing" href="example_cctest.html" />
+        <item name="Scaladoc" href="example_doc.html" />
+        <item name="Running" href="example_run.html" />
+        <item name="Scripting" href="example_script.html" />
+        <item name="Scala Console" href="example_console.html" />
+        <item name="Mixed Java/Scala Projects" href="example_java.html" />
+        <item name="Creating Scalac Plugins" href="example_scalac_plugins.html" />
+        <item name="Articles..." href="articles.html" />
+      </menu>
+      -->
+        <menu ref="reports" />
+        <menu ref="modules" />
+    </body>
 </project>
