@@ -47,7 +47,7 @@
         </section>
         <section name="Supported Annotations">
             <source>
-                <![CDATA[package org.example.mojo
+<![CDATA[package org.example.mojo
 
 import org.apache.maven.execution.MavenSession
 import org.apache.maven.plugin.AbstractMojo
