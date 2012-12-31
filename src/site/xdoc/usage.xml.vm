@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
   <properties>
-    <title>Using the plugin</title>
-    <authors>
-      <person name="David Bernard" />
-    </authors>
+    <title>Using the ${project.artifactId}</title>
   </properties>
   <body>
-    <h1>Using the plugin (common)</h1>
-    <section name="Configuration">
-      <p>to use the plugin you need to add this to your pom.xml</p>
+    <h1>Using ${project.artifactId}</h1>
+    <section name="plugin.xml and help mojo">
       <source>
         <![CDATA[
 <project>
@@ -44,6 +40,25 @@
           </dependency>
         </dependencies>
       </plugin>
+      ...
+    </plugins>
+    ...
+  </build>
+  ...
+</project>
+            ]]>
+      </source>
+    </section>
+
+      <section name="Plugin Report">
+          <source>
+              <![CDATA[
+<project>
+  ...
+  <build>
+    ...
+    <plugins>
+      ...
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -51,15 +66,11 @@
         <configuration>
           ...
           <reportPlugins>
+            ...
             <plugin>
               <groupId>${project.groupId}</groupId>
               <artifactId>${project.artifactId}</artifactId>
               <version>${project.version}</version>
-            </plugin>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-project-info-reports-plugin</artifactId>
-              <version>2.4</version>
             </plugin>
             ...
           </reportPlugins>
@@ -71,12 +82,8 @@
   ...
 </project>
             ]]>
-      </source>
-    </section>
-
-    <section name="Displaying scalamojo help and version">
-      <source>mvn scalamojo:help</source>
-    </section>
+          </source>
+      </section>
 
   </body>
 </document>
