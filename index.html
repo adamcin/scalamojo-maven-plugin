@@ -54,7 +54,7 @@
         <ul class="breadcrumb">
                 
                     
-                  <li id="publishDate">Last Published: 2012-12-31 14:38</li>
+                  <li id="publishDate">Last Published: 2012-12-31 14:55</li>
                   <li class="divider">|</li> <li id="projectVersion">Version: 0.5.0-SNAPSHOT</li>
                       
                 
@@ -207,6 +207,28 @@
           <i class="icon-chevron-right"></i>
         Project Reports</a>
                   </li>
+                              <li class="nav-header">Projects @ adamcin.net</li>
+                                
+      <li>
+    
+                          <a href="./" title="Scala Mojo Maven Plugin">
+          <i class="none"></i>
+        Scala Mojo Maven Plugin</a>
+            </li>
+                  
+      <li>
+    
+                          <a href="../vltpack-maven-plugin" title="VLT Pack Maven Plugin">
+          <i class="none"></i>
+        VLT Pack Maven Plugin</a>
+            </li>
+                  
+      <li>
+    
+                          <a href="../snagjar-maven-plugin" title="Snag Jar Maven Plugin">
+          <i class="none"></i>
+        Snag Jar Maven Plugin</a>
+            </li>
             </ul>
                 
                     
@@ -268,8 +290,7 @@
         </div>
         <div class="section"><h2>Supported Annotations<a name="Supported_Annotations"></a></h2>
             <div class="source"><pre class="prettyprint">
-                
-package org.example.mojo
+                package org.example.mojo
 
 import org.apache.maven.execution.MavenSession
 import org.apache.maven.plugin.AbstractMojo
@@ -317,7 +338,7 @@ class MyMojo extends AbstractMojo {
                 defaultValue = &quot;an expression with ${variables} eventually&quot;,
                 readonly = &lt;false|true&gt;
                 required = &lt;false|true&gt; )
-    val parameter: String = null
+    var parameter: String = null
 
     @Component( role = MyComponentExtension.class,
                 hint = &quot;...&quot; )
@@ -341,8 +362,7 @@ class MyMojo extends AbstractMojo {
     def execute() {
       ...
     }
-}&lt;/pre&gt;&lt;/div&gt;
-
+}
             </pre></div>
         </div>
     
