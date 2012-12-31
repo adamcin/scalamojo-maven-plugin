@@ -34,7 +34,12 @@ import org.apache.maven.plugins.annotations.{ResolutionScope, LifecyclePhase, Ex
 import collection.JavaConversions._
 
 /**
+ * Maven report goal that overrides the maven-plugin-plugin report goal to limit the active extractors to
+ * java-annotations-and-scaldoc.
  *
+ * This is generally necessary for reliable scala plugin report generation using this
+ * plugin's extractor, since the java-annotations extractor must always be on the classpath alongside it,
+ * and the maven-plugin-plugin report does not expose a similar configuration to that of the xdoc goal.
  * @since 1.0
  * @author Mark Adamcin
  */

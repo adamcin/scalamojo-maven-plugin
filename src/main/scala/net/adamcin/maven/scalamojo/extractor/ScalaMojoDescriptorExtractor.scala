@@ -57,6 +57,10 @@ object ScalaMojoDescriptorExtractor {
 class ScalaMojoDescriptorExtractor extends MojoDescriptorExtractor {
   val log = LoggerFactory.getLogger(getClass)
 
+  /**
+   * Bind the java-annotations extractor to generate the initial list of MojoDescriptors
+   * that must be decorated.
+   */
   @Requirement(role = ScalaMojoDescriptorExtractor.ROLE, hint = "java-annotations")
   var javaAnnotationsExtractor: MojoDescriptorExtractor = null
 

@@ -33,7 +33,7 @@ import org.slf4j.LoggerFactory
 import tools.nsc.doc.Settings
 
 /**
- *
+ * Implementation of Reporter for use by DocFactory compiler
  * @since 1.0
  * @author Mark Adamcin
  */

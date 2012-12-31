@@ -29,7 +29,7 @@ package net.adamcin.maven.scalamojo.extractor
 
 import org.apache.maven.project.MavenProject
 import java.io.File
-import org.apache.maven.plugin.descriptor.MojoDescriptor
+import org.apache.maven.plugin.descriptor.{Parameter, MojoDescriptor}
 import scala.collection.JavaConversions._
 
 import tools.nsc._
@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory
 import org.apache.maven.tools.plugin.PluginToolsRequest
 
 /**
- *
+ * Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function
  * @since 1.0
  * @author Mark Adamcin
  */
@@ -96,7 +96,7 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
             }.toMap
 
             descriptor.getParameters.foreach {
-              (param) => {
+              (param: Parameter) => {
                 memberMap.get(param.getName) match {
                   case None => ()
                   case Some(member) => {
