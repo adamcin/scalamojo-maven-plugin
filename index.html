@@ -54,8 +54,8 @@
         <ul class="breadcrumb">
                 
                     
-                  <li id="publishDate">Last Published: 2012-12-31 16:41</li>
-                  <li class="divider">|</li> <li id="projectVersion">Version: 0.6.0</li>
+                  <li id="publishDate">Last Published: 2012-12-31 17:15</li>
+                  <li class="divider">|</li> <li id="projectVersion">Version: 0.7.0-SNAPSHOT</li>
                       
                 
                     
@@ -340,7 +340,7 @@ class MyMojo extends AbstractMojo {
                 required = &lt;false|true&gt; )
     var parameter: String = null
 
-    @Component( role = MyComponentExtension.class,
+    @Component( role = classOf[MyComponentExtension],
                 hint = &quot;...&quot; )
     var component: MyComponent = null
 
