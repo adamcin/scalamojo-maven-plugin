@@ -97,7 +97,7 @@ class MyMojo extends AbstractMojo {
                 required = <false|true> )
     var parameter: String = null
 
-    @Component( role = MyComponentExtension.class,
+    @Component( role = classOf[MyComponentExtension],
                 hint = "..." )
     var component: MyComponent = null
 
