@@ -35,6 +35,8 @@
     <googleAnalyticsAccountId>UA-37073514-1</googleAnalyticsAccountId>
     <custom>
         <fluidoSkin>
+            <facebookLike />
+            <googlePlusOne />
             <!--
             <gitHub>
                 <projectId>adamcin/scalamojo-maven-plugin</projectId>
@@ -56,6 +58,10 @@
     </poweredBy>
 
     <body>
+        <head>
+            <meta name="keywords" content="scala, maven, maven plugin tools annotations"/>
+            <meta name="description" content="${project.description}"/>
+        </head>
         <links>
             <item name="Wiki" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/"/>
             <item name="FAQ" href="http://wiki.github.com/adamcin/scalamojo-maven-plugin/frequently-asked-questions"/>

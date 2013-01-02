@@ -59,17 +59,17 @@
         <maven>${maven.version}</maven>
     </prerequisites>
 
-    <url>http://adamcin.net/${project.artifactId}</url>
+    <url>http://adamcin.net/scalamojo-maven-plugin</url>
 
     <scm>
-        <url>https://github.com/adamcin/${project.artifactId}</url>
-        <developerConnection>scm:git:git@github.com:adamcin/${project.artifactId}.git</developerConnection>
-        <connection>scm:git://github.com/adamcin/${project.artifactId}.git</connection>
+        <url>https://github.com/adamcin/scalamojo-maven-plugin</url>
+        <developerConnection>scm:git:git@github.com:adamcin/scalamojo-maven-plugin.git</developerConnection>
+        <connection>scm:git://github.com/adamcin/scalamojo-maven-plugin.git</connection>
     </scm>
 
     <issueManagement>
         <system>github</system>
-        <url>http://github.com/adamcin/${project.artifactId}/issues/</url>
+        <url>http://github.com/adamcin/scalamojo-maven-plugin/issues/</url>
     </issueManagement>
 
     <licenses>
