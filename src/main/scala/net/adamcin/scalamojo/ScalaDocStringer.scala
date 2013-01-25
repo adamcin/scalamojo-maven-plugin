@@ -31,6 +31,7 @@ import tools.nsc.doc.model._
 import tools.nsc.doc.model.comment._
 
 import xml.NodeSeq
+import reflect.NameTransformer
 
 /**
  * Methods useful for generating html strings from text in scaladoc comments, mostly
@@ -159,6 +160,52 @@ object ScalaDocStringer {
       }
   }
 
+  def kindToString(mbr: MemberEntity) =
+    mbr match {
+      case c: Class => if (c.isCaseClass) "case class" else "class"
+      case _: Trait => "trait"
+      case _: Package => "package"
+      case _: Object => "object"
+      case _: AbstractType => "type"
+      case _: AliasType => "type"
+      case _: Constructor => "new"
+      case v: Def => "def"
+      case v: Val if (v.isLazyVal) => "lazy val"
+      case v: Val if (v.isVal) => "val"
+      case v: Val if (v.isVar) => "var"
+      case _ => sys.error("Cannot create kind for: " + mbr + " of class " + mbr.getClass)
+    }
+
+  def templateToPath(tpl: TemplateEntity): List[String] = {
+    def doName(tpl: TemplateEntity): String =
+      (if (tpl.inPackageObject) "package$$" else "") + NameTransformer.encode(tpl.name) + (if (tpl.isObject) "$" else "")
+    def downPacks(pack: Package): List[String] =
+      if (pack.isRootPackage) Nil else (doName(pack) :: downPacks(pack.inTemplate))
+    def downInner(nme: String, tpl: TemplateEntity): (String, Package) = {
+      tpl.inTemplate match {
+        case inPkg: Package => (nme + ".html", inPkg)
+        case inTpl => downInner(doName(inTpl) + "$" + nme, inTpl)
+      }
+    }
+    val (file, pack) =
+      tpl match {
+        case p: Package => ("package.html", p)
+        case _ => downInner(doName(tpl), tpl)
+      }
+    file :: downPacks(pack)
+  }
+
+  /** A relative link from this page to some destination class entity.
+    * @param destClass The class or object entity that the link will point to. */
+  def relativeLinkTo(destClass: TemplateEntity): String =
+    relativeLinkTo(templateToPath(destClass))
+
+  /** A relative link from this page to some destination path.
+    * @param destPath The path that the link will point to. */
+  def relativeLinkTo(destPath: List[String]): String = {
+    destPath.reverse.mkString("/")
+  }
+
   def inlineToHtml(inl: Inline): NodeSeq = inl match {
     case Chain(items) => items flatMap (inlineToHtml(_))
     case Italic(in) => <i>{ inlineToHtml(in) }</i>
@@ -166,12 +213,40 @@ object ScalaDocStringer {
     case Underline(in) => <u>{ inlineToHtml(in) }</u>
     case Superscript(in) => <sup>{ inlineToHtml(in) }</sup>
     case Subscript(in) => <sub>{ inlineToHtml(in) }</sub>
-    case Link(raw, title) => <a href={ raw }>{ inlineToHtml(title) }</a>
-    case EntityLink(entity) => templateToHtml(entity)
+    case Link(raw, title) => <a href={ raw } target="_blank">{ inlineToHtml(title) }</a>
     case Monospace(in) => <code>{ inlineToHtml(in) }</code>
-    case Text(text) => xml.Text(text)
+    case Text(text) => scala.xml.Text(text)
     case Summary(in) => inlineToHtml(in)
-    case HtmlTag(tag) => xml.Unparsed(tag)
+    case HtmlTag(tag) => scala.xml.Unparsed(tag)
+    case EntityLink(target, link) => linkToHtml(target, link, hasLinks = true)
+  }
+
+  def linkToHtml(text: Inline, link: LinkTo, hasLinks: Boolean) = link match {
+    case LinkToTpl(dtpl: TemplateEntity) =>
+      if (hasLinks)
+        <a href={ relativeLinkTo(dtpl) } class="extype" name={ dtpl.qualifiedName }>{ inlineToHtml(text) }</a>
+      else
+        <span class="extype" name={ dtpl.qualifiedName }>{ inlineToHtml(text) }</span>
+    case LinkToMember(mbr: MemberEntity, inTpl: TemplateEntity) =>
+      if (hasLinks)
+        <a href={ relativeLinkTo(inTpl) + "#" + mbr.signature } class="extmbr" name={ mbr.qualifiedName }>{ inlineToHtml(text) }</a>
+      else
+        <span class="extmbr" name={ mbr.qualifiedName }>{ inlineToHtml(text) }</span>
+    case Tooltip(tooltip) =>
+      <span class="extype" name={ tooltip }>{ inlineToHtml(text) }</span>
+    case LinkToExternal(name, url) =>
+      <a href={ url } class="extype" target="_top">{ inlineToHtml(text) }</a>
+    case _ =>
+      inlineToHtml(text)
+  }
+
+  def typeToHtml(tpes: List[TypeEntity], hasLinks: Boolean): NodeSeq = tpes match {
+    case Nil =>
+      NodeSeq.Empty
+    case List(tpe) =>
+      typeToHtml(tpe, hasLinks)
+    case tpe :: rest =>
+      typeToHtml(tpe, hasLinks) ++ scala.xml.Text(" with ") ++ typeToHtml(rest, hasLinks)
   }
 
   def typeToHtml(tpe: TypeEntity, hasLinks: Boolean): NodeSeq = {
@@ -180,29 +255,22 @@ object ScalaDocStringer {
       if (starts.isEmpty && (inPos == string.length))
         NodeSeq.Empty
       else if (starts.isEmpty)
-        xml.Text(string.slice(inPos, string.length))
+        scala.xml.Text(string.slice(inPos, string.length))
       else if (inPos == starts.head)
         toLinksIn(inPos, starts)
       else {
-        xml.Text(string.slice(inPos, starts.head)) ++ toLinksIn(starts.head, starts)
+        scala.xml.Text(string.slice(inPos, starts.head)) ++ toLinksIn(starts.head, starts)
       }
     }
     def toLinksIn(inPos: Int, starts: List[Int]): NodeSeq = {
-      val (tpl, width) = tpe.refEntity(inPos)
-      (tpl match {
-        case dtpl:DocTemplateEntity if hasLinks =>
-          <span class="extype" name={ tpl.qualifiedName }>{ string.slice(inPos, inPos + width) }</span>
-          /*<a href={ relativeLinkTo(dtpl) } class="extype" name={ dtpl.qualifiedName }>{
-            string.slice(inPos, inPos + width)
-          }</a>*/
-        case tpl =>
-          <span class="extype" name={ tpl.qualifiedName }>{ string.slice(inPos, inPos + width) }</span>
-      }) ++ toLinksOut(inPos + width, starts.tail)
+      val (link, width) = tpe.refEntity(inPos)
+      val text = comment.Text(string.slice(inPos, inPos + width))
+      linkToHtml(text, link, hasLinks) ++ toLinksOut(inPos + width, starts.tail)
     }
     if (hasLinks)
       toLinksOut(0, tpe.refEntity.keySet.toList)
     else
-      xml.Text(string)
+      scala.xml.Text(string)
   }
 
   def typesToHtml(tpess: List[TypeEntity], hasLinks: Boolean, sep: NodeSeq): NodeSeq = tpess match {
@@ -216,16 +284,15 @@ object ScalaDocStringer {
   }
 
   /** Returns the HTML code that represents the template in `tpl` as a hyperlinked name. */
-  def templateToHtml(tpl: TemplateEntity) = tpl match {
+  def templateToHtml(tpl: TemplateEntity, name: String = null) = tpl match {
     case dTpl: DocTemplateEntity =>
       if (hasPage(dTpl)) {
-        xml.Text(dTpl.name)
-        //<a href={ relativeLinkTo(dTpl) } class="extype" name={ dTpl.qualifiedName }>{ dTpl.name }</a>
+        <a href={ relativeLinkTo(dTpl) } class="extype" name={ dTpl.qualifiedName }>{ if (name eq null) dTpl.name else name }</a>
       } else {
-        xml.Text(dTpl.name)
+        scala.xml.Text(if (name eq null) dTpl.name else name)
       }
     case ndTpl: NoDocTemplate =>
-      xml.Text(ndTpl.name)
+      scala.xml.Text(if (name eq null) ndTpl.name else name)
   }
 
   /** Returns the HTML code that represents the templates in `tpls` as a list of hyperlinked names. */
@@ -234,4 +301,19 @@ object ScalaDocStringer {
     case tpl :: Nil  => templateToHtml(tpl)
     case tpl :: tpls => templateToHtml(tpl) ++ sep ++ templatesToHtml(tpls, sep)
   }
+
+  /** Returns the _big image name corresponding to the DocTemplate Entity (upper left icon) */
+  def docEntityKindToBigImage(ety: DocTemplateEntity) =
+    if (ety.isTrait && !ety.companion.isEmpty && ety.companion.get.visibility.isPublic && ety.companion.get.inSource != None) "trait_to_object_big.png"
+    else if (ety.isTrait) "trait_big.png"
+    else if (ety.isClass && !ety.companion.isEmpty && ety.companion.get.visibility.isPublic && ety.companion.get.inSource != None) "class_to_object_big.png"
+    else if (ety.isClass) "class_big.png"
+    else if ((ety.isAbstractType || ety.isAliasType) && !ety.companion.isEmpty && ety.companion.get.visibility.isPublic && ety.companion.get.inSource != None) "type_to_object_big.png"
+    else if ((ety.isAbstractType || ety.isAliasType)) "type_big.png"
+    else if (ety.isObject && !ety.companion.isEmpty && ety.companion.get.visibility.isPublic && ety.companion.get.inSource != None && ety.companion.get.isClass) "object_to_class_big.png"
+    else if (ety.isObject && !ety.companion.isEmpty && ety.companion.get.visibility.isPublic && ety.companion.get.inSource != None && ety.companion.get.isTrait) "object_to_trait_big.png"
+    else if (ety.isObject && !ety.companion.isEmpty && ety.companion.get.visibility.isPublic && ety.companion.get.inSource != None && (ety.companion.get.isAbstractType || ety.companion.get.isAliasType)) "object_to_trait_big.png"
+    else if (ety.isObject) "object_big.png"
+    else if (ety.isPackage) "package_big.png"
+    else "class_big.png"  // FIXME: an entity *should* fall into one of the above categories, but AnyRef is somehow not
 }

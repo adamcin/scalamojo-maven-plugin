@@ -33,13 +33,13 @@ import org.apache.maven.plugin.descriptor.{Parameter, MojoDescriptor}
 import scala.collection.JavaConversions._
 
 import tools.nsc._
+import doc.model.DocTemplateEntity
 import tools.nsc.reporters._
 import doc.{DocFactory, Universe, Settings}
-import util.FakePos
 import org.slf4j.LoggerFactory
 import org.apache.maven.tools.plugin.PluginToolsRequest
 import scala.Some
-import util.FakePos
+import reflect.internal.util.FakePos
 
 /**
  * Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function
@@ -53,11 +53,11 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
     if (descriptor.getGoal == "help") {
       descriptor
     } else {
-      def findClass(p: doc.model.Package, c: String): Option[doc.model.Class] = {
+      def findClass(p: doc.model.Package, c: String): Option[doc.model.Class with DocTemplateEntity] = {
         val dotIndex = c.indexOf(".")
         if (dotIndex < 0) {
           p.templates.find((t) => t.isClass && t.name == c) match {
-            case Some(entity) => Some(entity.asInstanceOf[doc.model.Class])
+            case Some(entity) => Some(entity.asInstanceOf[doc.model.Class with DocTemplateEntity])
             case None => None
           }
         } else {
@@ -144,7 +144,7 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
 
     val (settings, reporter) = initialize
 
-    decorate(new DocFactory(reporter, settings).makeUniverse(sourceFiles))_
+    decorate(new DocFactory(reporter, settings).makeUniverse(Left(sourceFiles)))_
   }
 
   def getClasspath(p : Option[MavenProject]): String = {
