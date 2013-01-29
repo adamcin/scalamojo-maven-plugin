@@ -2,24 +2,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>net.adamcin.scalamojo</title>
+          <title>scalamojo - Scala Mojo Maven Plugin 0.7.0-SNAPSHOT API - net.adamcin.scalamojo</title>
+          <meta name="description" content="scalamojo - Scala Mojo Maven Plugin 0.7.0 - SNAPSHOT API - net.adamcin.scalamojo" />
+          <meta name="keywords" content="scalamojo Scala Mojo Maven Plugin 0.7.0 SNAPSHOT API net.adamcin.scalamojo" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
-      <link type="text/css" media="screen" rel="stylesheet" href="../../../lib/template.css" />
-      <script type="text/javascript" src="../../../lib/jquery.js"></script>
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
       <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
       <script type="text/javascript" src="../../../lib/template.js"></script>
       <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'net.adamcin.scalamojo.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
     
         </head>
-        <body onload="sh_highlightDocument('../lib/', '.min.js');" class="value">
+        <body class="value">
       <div id="definition">
         <img src="../../../lib/package_big.png" />
-        <p id="owner"><a name="net" class="extype" href="../../package.html">net</a>.<a name="net.adamcin" class="extype" href="../package.html">adamcin</a></p>
+        <p id="owner"><a href="../../package.html" class="extype" name="net">net</a>.<a href="../package.html" class="extype" name="net.adamcin">adamcin</a></p>
         <h1>scalamojo</h1>
       </div>
 
-      <h4 class="signature" id="signature">
+      <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">package</span>
@@ -29,11 +44,11 @@
       </span>
       </h4>
       
-      <div class="fullcommenttop" id="comment"></div>
-    
+          <div id="comment" class="fullcommenttop"></div>
+        
 
       <div id="mbrsel">
-        <div id="textfilter"><span class="pre"></span><span class="input"><input accesskey="/" type="text" /></span><span class="post"></span></div>
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
         
         
         <div id="visbl">
@@ -46,9 +61,10 @@
         <div id="allMembers">
         
 
-        <div class="types members" id="types">
+        <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li visbl="pub" name="net.adamcin.scalamojo.MojoReporter" data-isabs="false">
+              <ol><li name="net.adamcin.scalamojo.MojoReporter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MojoReporterextendsAbstractReporter"></a>
       <a id="MojoReporter:MojoReporter"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -56,11 +72,12 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="MojoReporter.html"><span class="name">MojoReporter</span></a><span class="result"> extends AbstractReporter</span>
+        <a href="MojoReporter.html"><span class="name">MojoReporter</span></a><span class="result"> extends <span class="extype" name="scala.tools.nsc.reporters.AbstractReporter">AbstractReporter</span></span>
       </span>
       </h4>
       <p class="comment cmt">Implementation of Reporter for use by DocFactory compiler</p>
-    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocBasedPluginReport" data-isabs="false">
+    </li><li name="net.adamcin.scalamojo.ScalaDocBasedPluginReport" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaDocBasedPluginReportextendsPluginReport"></a>
       <a id="ScalaDocBasedPluginReport:ScalaDocBasedPluginReport"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -68,12 +85,13 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="ScalaDocBasedPluginReport.html"><span class="name">ScalaDocBasedPluginReport</span></a><span class="result"> extends PluginReport</span>
+        <a href="ScalaDocBasedPluginReport.html"><span class="name">ScalaDocBasedPluginReport</span></a><span class="result"> extends <span class="extype" name="org.apache.maven.plugin.plugin.PluginReport">PluginReport</span></span>
       </span>
       </h4>
       <p class="comment cmt">Maven report goal that overrides the maven-plugin-plugin report goal to limit the active extractors to
 java-annotations-and-scaldoc.</p>
-    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocExtractorCompiler" data-isabs="false">
+    </li><li name="net.adamcin.scalamojo.ScalaDocExtractorCompiler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaDocExtractorCompilerextendsObject"></a>
       <a id="ScalaDocExtractorCompiler:ScalaDocExtractorCompiler"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -81,11 +99,12 @@ java-annotations-and-scaldoc.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="ScalaDocExtractorCompiler.html"><span class="name">ScalaDocExtractorCompiler</span></a><span class="result"> extends AnyRef</span>
+        <a href="ScalaDocExtractorCompiler.html"><span class="name">ScalaDocExtractorCompiler</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4>
       <p class="comment cmt">Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function</p>
-    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocMojoDescriptorExtractor" data-isabs="false">
+    </li><li name="net.adamcin.scalamojo.ScalaDocMojoDescriptorExtractor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaDocMojoDescriptorExtractorextendsMojoDescriptorExtractor"></a>
       <a id="ScalaDocMojoDescriptorExtractor:ScalaDocMojoDescriptorExtractor"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -93,7 +112,7 @@ java-annotations-and-scaldoc.</p>
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <a href="ScalaDocMojoDescriptorExtractor.html"><span class="name">ScalaDocMojoDescriptorExtractor</span></a><span class="result"> extends MojoDescriptorExtractor</span>
+        <a href="ScalaDocMojoDescriptorExtractor.html"><span class="name">ScalaDocMojoDescriptorExtractor</span></a><span class="result"> extends <span class="extype" name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor">MojoDescriptorExtractor</span></span>
       </span>
       </h4>
       <p class="comment cmt">MojoDescriptorExtractor implementation that delegates to the OOTB JavaAnnotationsExtractor
@@ -105,9 +124,10 @@ in the .</p>
 
         
 
-        <div class="values members" id="values">
+        <div id="values" class="values members">
               <h3>Value Members</h3>
-              <ol><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocMojoDescriptorExtractor" data-isabs="false">
+              <ol><li name="net.adamcin.scalamojo.ScalaDocMojoDescriptorExtractor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaDocMojoDescriptorExtractor"></a>
       <a id="ScalaDocMojoDescriptorExtractor:ScalaDocMojoDescriptorExtractor"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -115,11 +135,12 @@ in the .</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="ScalaDocMojoDescriptorExtractor$.html"><span class="name">ScalaDocMojoDescriptorExtractor</span></a><span class="result"> extends AnyRef</span>
+        <a href="ScalaDocMojoDescriptorExtractor$.html"><span class="name">ScalaDocMojoDescriptorExtractor</span></a>
       </span>
       </h4>
       
-    </li><li visbl="pub" name="net.adamcin.scalamojo.ScalaDocStringer" data-isabs="false">
+    </li><li name="net.adamcin.scalamojo.ScalaDocStringer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaDocStringer"></a>
       <a id="ScalaDocStringer:ScalaDocStringer"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -127,7 +148,7 @@ in the .</p>
         <span class="kind">object</span>
       </span>
       <span class="symbol">
-        <a href="ScalaDocStringer$.html"><span class="name">ScalaDocStringer</span></a><span class="result"> extends AnyRef</span>
+        <a href="ScalaDocStringer$.html"><span class="name">ScalaDocStringer</span></a>
       </span>
       </h4>
       <p class="comment cmt">Methods useful for generating html strings from text in scaladoc comments, mostly
@@ -136,10 +157,20 @@ ripped straight from the ScalaDoc tool's HTML generator logic</p>
             </div>
 
         
+
+        
         </div>
 
         <div id="inheritedMembers">
         
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
         </div>
 
       </div>
