@@ -52,7 +52,6 @@
         <scala.version>2.10.0</scala.version>
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>1.5</maven.compiler.target>
-        <self.report.version>0.7.0-SNAPSHOT</self.report.version>
     </properties>
 
     <prerequisites>
