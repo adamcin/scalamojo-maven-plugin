@@ -26,7 +26,8 @@
   ~ For more information, please refer to <http://unlicense.org />
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -47,15 +48,17 @@
 
     <properties>
         <encoding>UTF-8</encoding>
-        <maven.version>3.0</maven.version>
-        <maven.plugin.tools.version>3.2</maven.plugin.tools.version>
-        <scala.version>2.10.0</scala.version>
-        <maven.compiler.source>1.5</maven.compiler.source>
-        <maven.compiler.target>1.5</maven.compiler.target>
+        <maven.version>3.3.9</maven.version>
+        <maven.plugin.tools.version>3.4</maven.plugin.tools.version>
+        <scala.version.major>2.11</scala.version.major>
+        <scala.version>2.11.7</scala.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <github.global.server>github</github.global.server>
     </properties>
 
     <prerequisites>
-        <maven>${maven.version}</maven>
+        <maven>3.3.9</maven>
     </prerequisites>
 
     <url>http://adamcin.net/scalamojo-maven-plugin</url>
@@ -84,8 +87,8 @@
             <name>Mark Adamcin</name>
             <email>adamcin@gmail.com</email>
             <url>http://adamcin.net</url>
-            <organization>Acquity Group</organization>
-            <organizationUrl>http://www.acquitygroup.com</organizationUrl>
+            <organization>Infield Digital</organization>
+            <organizationUrl>http://www.infielddigital.com</organizationUrl>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
@@ -98,10 +101,10 @@
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.2.2</version>
                 <configuration>
                     <args>
-                        <arg>-target:jvm-1.6</arg>
+                        <arg>-target:jvm-1.8</arg>
                         <arg>-no-specialization</arg>
                         <arg>-deprecation</arg>
                     </args>
@@ -126,7 +129,7 @@
             <plugin>
                 <groupId>org.codehaus.plexus</groupId>
                 <artifactId>plexus-component-metadata</artifactId>
-                <version>1.5.5</version>
+                <version>1.7</version>
                 <executions>
                     <execution>
                         <goals>
@@ -155,28 +158,22 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>1.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.0</version>
+                <version>3.5.1</version>
                 <configuration>
                     <inputEncoding>utf-8</inputEncoding>
-                    <reportPlugins>
-                        <plugin>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>${project.artifactId}</artifactId>
-                            <version>${project.version}</version>
-                        </plugin>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-project-info-reports-plugin</artifactId>
-                            <version>2.4</version>
-                        </plugin>
-                    </reportPlugins>
+
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
-                <version>0.5</version>
+                <version>0.12</version>
                 <configuration>
                     <message>Creating site for ${project.artifactId} ${project.version}</message>
                     <noJekyll>true</noJekyll>
@@ -194,7 +191,20 @@
             </plugin>
         </plugins>
     </build>
-
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <version>${project.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+        </plugins>
+    </reporting>
     <dependencies>
         <dependency>
             <groupId>org.scala-lang</groupId>
@@ -210,6 +220,16 @@
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-reflect</artifactId>
             <version>${scala.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-xml_2.11</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-parser-combinators_2.11</artifactId>
+            <version>1.0.4</version>
         </dependency>
 
         <!-- Override 3rd-party logging -->
@@ -265,12 +285,12 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.24</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-digest</artifactId>
-            <version>1.0</version>
+            <version>1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
@@ -320,14 +340,14 @@
         </dependency>
         <dependency>
             <groupId>org.scalatest</groupId>
-            <artifactId>scalatest_${scala.version}</artifactId>
-            <version>1.8</version>
+            <artifactId>scalatest_${scala.version.major}</artifactId>
+            <version>2.2.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-testing</groupId>
             <artifactId>maven-plugin-testing-harness</artifactId>
-            <version>1.2</version>
+            <version>3.3.0</version>
             <scope>test</scope>
         </dependency>
 

@@ -32,7 +32,7 @@ import org.apache.maven.tools.plugin.{DefaultPluginToolsRequest, PluginToolsRequ
 import org.apache.maven.project.MavenProject
 import org.apache.maven.plugin.descriptor.{MojoDescriptor, PluginDescriptor}
 import org.slf4j.LoggerFactory
-import collection.JavaConversions._
+import collection.JavaConverters._
 import java.io.File
 import org.apache.maven.tools.plugin.util.PluginUtils
 import org.codehaus.plexus.component.annotations.{Requirement, Component}
@@ -80,7 +80,7 @@ class ScalaDocMojoDescriptorExtractor extends MojoDescriptorExtractor {
    * @return a java list of extracted MojoDescriptors
    */
   def execute(request: PluginToolsRequest): java.util.List[MojoDescriptor] = {
-    val descriptors = javaAnnotationsExtractor.execute(request).toList
+    val descriptors = javaAnnotationsExtractor.execute(request).asScala.toList
 
     val sourceFiles = (for {
       root <- getSourceRoots(Option(request.getProject))
@@ -100,7 +100,7 @@ class ScalaDocMojoDescriptorExtractor extends MojoDescriptorExtractor {
     val roots = p match {
       case None => Nil
       case Some(project) => {
-        val baseRoots = project.getCompileSourceRoots.toList
+        val baseRoots = project.getCompileSourceRoots.asScala.toList
         Option(project.getExecutionProject) match {
           case Some(exProject) => {
             if (exProject != project) getSourceRoots(Some(exProject)) else baseRoots
@@ -123,6 +123,6 @@ class ScalaDocMojoDescriptorExtractor extends MojoDescriptorExtractor {
   def useCompiler(request: PluginToolsRequest, sourceFiles: List[String], descriptors: List[MojoDescriptor]): java.util.List[MojoDescriptor] = {
     val compiler = new ScalaDocExtractorCompiler(request)
     val decorator = compiler.extractDescriptorDecorator(sourceFiles)
-    descriptors.map { decorator }
+    new java.util.ArrayList(descriptors.map { decorator }.asJava)
   }
 }

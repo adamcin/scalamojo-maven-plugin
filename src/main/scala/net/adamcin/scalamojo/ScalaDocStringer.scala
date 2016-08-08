@@ -28,7 +28,8 @@
 package net.adamcin.scalamojo
 
 import tools.nsc.doc.model._
-import tools.nsc.doc.model.comment._
+import tools.nsc.doc.base._
+import tools.nsc.doc.base.comment._
 
 import xml.NodeSeq
 import reflect.NameTransformer

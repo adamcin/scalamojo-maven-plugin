@@ -28,7 +28,7 @@
 package net.adamcin.scalamojo
 
 import tools.nsc.reporters.AbstractReporter
-import tools.nsc.util.{NoPosition, Position}
+import scala.reflect.internal.util.{NoPosition, Position}
 import org.slf4j.LoggerFactory
 import tools.nsc.doc.Settings
 
@@ -47,7 +47,7 @@ class MojoReporter(val settings: Settings, val quiet: Boolean) extends AbstractR
       if (pos eq null) {
         NoPosition
       } else if (pos.isDefined) {
-        pos.inUltimateSource(pos.source)
+        pos.finalPosition
       } else {
         pos
       }

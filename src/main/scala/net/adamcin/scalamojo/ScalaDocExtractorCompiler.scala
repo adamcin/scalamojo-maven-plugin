@@ -30,7 +30,7 @@ package net.adamcin.scalamojo
 import org.apache.maven.project.MavenProject
 import java.io.File
 import org.apache.maven.plugin.descriptor.{Parameter, MojoDescriptor}
-import scala.collection.JavaConversions._
+import scala.collection.JavaConverters._
 
 import tools.nsc._
 import doc.model.DocTemplateEntity
@@ -97,7 +97,7 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
               (entity) => (entity.name, entity)
             }.toMap
 
-            descriptor.getParameters.foreach {
+            descriptor.getParameters.asScala.map { _.asInstanceOf[Parameter] }.foreach {
               (param: Parameter) => {
                 memberMap.get(param.getName) match {
                   case None => ()
@@ -137,7 +137,7 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
       var reporter: Reporter = null
       val docSettings = new doc.Settings(msg => reporter.error(FakePos("scaladoc"), msg + "\n  scaladoc -help  gives more information"))
       docSettings.classpath.value = getClasspath(project)
-      docSettings.stop.tryToSetColon(List("constructors"))
+      docSettings.stopBefore.tryToSetColon(List("constructors"))
       reporter = new MojoReporter(docSettings, quiet = true)
       (docSettings, reporter)
     }
@@ -151,7 +151,7 @@ class ScalaDocExtractorCompiler(request: PluginToolsRequest) {
     val classpath = p match {
       case None => ""
       case Some(project) => {
-        val baseClasspath = project.getCompileClasspathElements.mkString(File.pathSeparator)
+        val baseClasspath = project.getCompileClasspathElements.asScala.mkString(File.pathSeparator)
         Option(project.getExecutionProject) match {
           case Some(exProject) => {
             if (exProject != project) getClasspath(Some(exProject)) else baseClasspath
