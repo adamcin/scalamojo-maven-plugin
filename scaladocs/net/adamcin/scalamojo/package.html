@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html >
 <html>
         <head>
           <title>scalamojo - Scala Mojo Maven Plugin 0.9.0-SNAPSHOT API - net.adamcin.scalamojo</title>
@@ -29,9 +28,13 @@
         </head>
         <body class="value">
       <div id="definition">
-        <img src="../../../lib/package_big.png" />
+        <img alt="Package" src="../../../lib/package_big.png" />
         <p id="owner"><a href="../../package.html" class="extype" name="net">net</a>.<a href="../package.html" class="extype" name="net.adamcin">adamcin</a></p>
-        <h1>scalamojo</h1>
+        <h1>scalamojo</h1><span class="permalink">
+      <a href="../../../index.html#net.adamcin.scalamojo.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       </div>
 
       <h4 id="signature" class="signature">
@@ -63,7 +66,7 @@
 
         <div id="types" class="types members">
               <h3>Type Members</h3>
-              <ol><li name="net.adamcin.scalamojo.MojoReporter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+              <ol><li name="net.adamcin.scalamojo.MojoReporter" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="MojoReporterextendsAbstractReporter"></a>
       <a id="MojoReporter:MojoReporter"></a>
       <h4 class="signature">
@@ -74,9 +77,13 @@
       <span class="symbol">
         <a href="MojoReporter.html"><span class="name">MojoReporter</span></a><span class="result"> extends <span class="extype" name="scala.tools.nsc.reporters.AbstractReporter">AbstractReporter</span></span>
       </span>
-      </h4>
-      <p class="comment cmt">Implementation of Reporter for use by DocFactory compiler</p>
-    </li><li name="net.adamcin.scalamojo.ScalaDocBasedPluginReport" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../index.html#net.adamcin.scalamojo.package@MojoReporterextendsAbstractReporter" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implementation of Reporter for use by DocFactory compiler</p><div class="fullcomment"><div class="comment cmt"><p>Implementation of Reporter for use by DocFactory compiler</p></div><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.0</p></dd></dl></div>
+    </li><li name="net.adamcin.scalamojo.ScalaDocBasedPluginReport" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ScalaDocBasedPluginReportextendsPluginReport"></a>
       <a id="ScalaDocBasedPluginReport:ScalaDocBasedPluginReport"></a>
       <h4 class="signature">
@@ -87,11 +94,23 @@
       <span class="symbol">
         <a href="ScalaDocBasedPluginReport.html"><span class="name">ScalaDocBasedPluginReport</span></a><span class="result"> extends <span class="extype" name="org.apache.maven.plugin.plugin.PluginReport">PluginReport</span></span>
       </span>
-      </h4>
-      <p class="comment cmt">Maven report goal that overrides the maven-plugin-plugin report goal to limit the active extractors to
-java-annotations-and-scaldoc.</p>
-    </li><li name="net.adamcin.scalamojo.ScalaDocExtractorCompiler" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="ScalaDocExtractorCompilerextendsObject"></a>
+      </h4><span class="permalink">
+      <a href="../../../index.html#net.adamcin.scalamojo.package@ScalaDocBasedPluginReportextendsPluginReport" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Maven report goal that overrides the maven-plugin-plugin report goal to limit the active extractors to
+java-annotations-and-scaldoc.</p><div class="fullcomment"><div class="comment cmt"><p>Maven report goal that overrides the maven-plugin-plugin report goal to limit the active extractors to
+java-annotations-and-scaldoc. This is generally necessary for reliable scala plugin report generation using this
+plugin's extractor, since the java-annotations extractor must always be on the classpath alongside it,
+and the maven-plugin-plugin report does not expose a similar configuration to that of the xdoc goal.</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Mojo</span><span class="args">()</span>
+              
+                <span class="name">@Execute</span><span class="args">()</span>
+              
+        </dd><dt>Since</dt><dd><p>0.6.0</p></dd></dl></div>
+    </li><li name="net.adamcin.scalamojo.ScalaDocExtractorCompiler" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ScalaDocExtractorCompilerextendsAnyRef"></a>
       <a id="ScalaDocExtractorCompiler:ScalaDocExtractorCompiler"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -101,9 +120,13 @@ java-annotations-and-scaldoc.</p>
       <span class="symbol">
         <a href="ScalaDocExtractorCompiler.html"><span class="name">ScalaDocExtractorCompiler</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
-      </h4>
-      <p class="comment cmt">Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function</p>
-    </li><li name="net.adamcin.scalamojo.ScalaDocMojoDescriptorExtractor" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      </h4><span class="permalink">
+      <a href="../../../index.html#net.adamcin.scalamojo.package@ScalaDocExtractorCompilerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function</p><div class="fullcomment"><div class="comment cmt"><p>Wraps a ScalaDoc-compiled model in a MojoDescriptor decorator function</p></div><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.0</p></dd></dl></div>
+    </li><li name="net.adamcin.scalamojo.ScalaDocMojoDescriptorExtractor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ScalaDocMojoDescriptorExtractorextendsMojoDescriptorExtractor"></a>
       <a id="ScalaDocMojoDescriptorExtractor:ScalaDocMojoDescriptorExtractor"></a>
       <h4 class="signature">
@@ -114,11 +137,29 @@ java-annotations-and-scaldoc.</p>
       <span class="symbol">
         <a href="ScalaDocMojoDescriptorExtractor.html"><span class="name">ScalaDocMojoDescriptorExtractor</span></a><span class="result"> extends <span class="extype" name="org.apache.maven.tools.plugin.extractor.MojoDescriptorExtractor">MojoDescriptorExtractor</span></span>
       </span>
-      </h4>
-      <p class="comment cmt">MojoDescriptorExtractor implementation that delegates to the OOTB JavaAnnotationsExtractor
+      </h4><span class="permalink">
+      <a href="../../../index.html#net.adamcin.scalamojo.package@ScalaDocMojoDescriptorExtractorextendsMojoDescriptorExtractor" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">MojoDescriptorExtractor implementation that delegates to the OOTB JavaAnnotationsExtractor
 (<code>&lt;extractor&gt;java-annotations&lt;/extractor&gt;</code>) to extract
 all the details it can from the standard java annotations, which are retained
-in the .</p>
+in the .class files after compilation, and then decorates those extracted descriptors
+with the details that can only be found in the javadoc/scaladoc comments in the
+source files, namely: <code>@deprecated</code>, <code>@since</code>, and most importantly,
+<code>description</code>
+</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>MojoDescriptorExtractor implementation that delegates to the OOTB JavaAnnotationsExtractor
+(<code>&lt;extractor&gt;java-annotations&lt;/extractor&gt;</code>) to extract
+all the details it can from the standard java annotations, which are retained
+in the .class files after compilation, and then decorates those extracted descriptors
+with the details that can only be found in the javadoc/scaladoc comments in the
+source files, namely: <code>@deprecated</code>, <code>@since</code>, and most importantly,
+<code>description</code>
+</p></div><dl class="attributes block"> <dt>Annotations</dt><dd>
+                <span class="name">@Component</span><span class="args">()</span>
+              
+        </dd><dt>Since</dt><dd><p>0.6.0</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -137,9 +178,13 @@ in the .</p>
       <span class="symbol">
         <a href="ScalaDocMojoDescriptorExtractor$.html"><span class="name">ScalaDocMojoDescriptorExtractor</span></a>
       </span>
-      </h4>
+      </h4><span class="permalink">
+      <a href="../../../index.html#net.adamcin.scalamojo.package@ScalaDocMojoDescriptorExtractor" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
       
-    </li><li name="net.adamcin.scalamojo.ScalaDocStringer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="net.adamcin.scalamojo.ScalaDocStringer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ScalaDocStringer"></a>
       <a id="ScalaDocStringer:ScalaDocStringer"></a>
       <h4 class="signature">
@@ -150,9 +195,14 @@ in the .</p>
       <span class="symbol">
         <a href="ScalaDocStringer$.html"><span class="name">ScalaDocStringer</span></a>
       </span>
-      </h4>
-      <p class="comment cmt">Methods useful for generating html strings from text in scaladoc comments, mostly
-ripped straight from the ScalaDoc tool's HTML generator logic</p>
+      </h4><span class="permalink">
+      <a href="../../../index.html#net.adamcin.scalamojo.package@ScalaDocStringer" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Methods useful for generating html strings from text in scaladoc comments, mostly
+ripped straight from the ScalaDoc tool's HTML generator logic</p><div class="fullcomment"><div class="comment cmt"><p>Methods useful for generating html strings from text in scaladoc comments, mostly
+ripped straight from the ScalaDoc tool's HTML generator logic</p></div><dl class="attributes block"> <dt>Since</dt><dd><p>0.6.0</p></dd></dl></div>
     </li></ol>
             </div>
 
