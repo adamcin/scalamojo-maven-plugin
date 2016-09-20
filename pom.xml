@@ -38,7 +38,7 @@
     <groupId>net.adamcin</groupId>
     <artifactId>scalamojo-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.1.0</version>
 
     <name>Scala Mojo Maven Plugin</name>
     <description>
@@ -66,7 +66,7 @@
         <url>https://github.com/adamcin/scalamojo-maven-plugin</url>
         <developerConnection>scm:git:git@github.com:adamcin/scalamojo-maven-plugin.git</developerConnection>
         <connection>scm:git://github.com/adamcin/scalamojo-maven-plugin.git</connection>
-      <tag>HEAD</tag>
+      <tag>scalamojo-maven-plugin-1.1.0</tag>
   </scm>
 
     <issueManagement>
